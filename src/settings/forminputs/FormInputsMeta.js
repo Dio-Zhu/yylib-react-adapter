@@ -1,0 +1,51 @@
+import FormItemType from './FormItemType';
+var AttachUploadMeta = require('./attachupload/AttachuploadMeta');
+var CascaderMeta = require('./cascader/CascaderMeta');
+var CurrencyMeta = require('./currency/CurrencyMeta');
+var DateMeta = require('./date/DateMeta');
+var EnumSelectMeta = require('./enumselect/EnumSelectMeta');
+var ImageUploadMeta = require('./imageupload/ImageUploadMeta');
+var InputMeta = require('./input/InputMeta');
+var InputButtonMeta = require('./inputbutton/InputButtonMeta');
+var InputReferMeta = require('./inputrefer/InputReferMeta');
+var NumberMeta = require('./number/NumberMeta');
+var CheckboxGroupMeta = require('./checkbox/CheckboxGroupMeta');
+var RadioGroupMeta = require('./radio/RadioGroupMeta');
+var SelectMeta = require('./select/SelectMeta');
+var SwitchMeta = require('./switch/SwitchMeta');
+var TextareaMeta = require('./textarea/TextareaMeta');
+var InputMapMeta = require('./inputmap/InputMapMeta');
+var EditorMeta = require('./editor/EditorMeta');
+var AttachMgrwMeta = require('./attachmgrw/AttachMgrwMeta');
+var TimeMeta = require('./time/TimeMeta');
+var RangePickerMeta = require('./rangepicker/RangePickerMeta');
+var TextMeta = require('./text/TextMeta');
+var AutoSelectMeta = require('./autoselect/AutoSelectMeta');
+
+module.exports = function(options) {
+    //var {tplNode,tplTree} = options;
+    var PropMeta = {};
+    PropMeta[FormItemType.inputrefer] = InputReferMeta(options);
+    PropMeta[FormItemType.input] = InputMeta(options);
+    PropMeta[FormItemType.select] = SelectMeta(options);
+    PropMeta[FormItemType.date] = DateMeta(options);
+    PropMeta[FormItemType.number] = NumberMeta(options);
+    PropMeta[FormItemType.currency] = CurrencyMeta(options);
+    PropMeta[FormItemType.switch] = SwitchMeta(options);
+    PropMeta[FormItemType.enumselect] = EnumSelectMeta(options);
+    PropMeta[FormItemType.cascader] = CascaderMeta(options);
+    PropMeta[FormItemType.radiogroup] = RadioGroupMeta(options);
+    PropMeta[FormItemType.checkboxgroup] = CheckboxGroupMeta(options);
+    PropMeta[FormItemType.textarea] = TextareaMeta(options);
+    PropMeta[FormItemType.imageupload] = ImageUploadMeta(options);
+    PropMeta[FormItemType.attachupload] = AttachUploadMeta(options);
+    PropMeta[FormItemType.inputmap] = InputMapMeta(options);
+    PropMeta[FormItemType.editor] = EditorMeta(options);
+    PropMeta[FormItemType.attachmgrw] = AttachMgrwMeta(options);
+    PropMeta[FormItemType.time] = TimeMeta(options);
+    PropMeta[FormItemType.rangepicker] = RangePickerMeta(options);
+    PropMeta[FormItemType.plaintext] = TextMeta(options);
+    PropMeta[FormItemType.autoselect] = AutoSelectMeta(options);
+    PropMeta[FormItemType.inputbutton] = InputButtonMeta(options);
+    return PropMeta
+}
