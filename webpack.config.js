@@ -6,7 +6,9 @@ module.exports = {
   ],
   output: {
     path: './dist/',
-    filename: "index.js"
+    filename: "index.js",
+    library:"yylib-react-adapter",
+    libraryTarget:'umd'
   },
   // devtool: 'cheap-module-eval-source-map',
   module: {
