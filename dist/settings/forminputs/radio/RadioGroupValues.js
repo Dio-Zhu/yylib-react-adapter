@@ -1,0 +1,29 @@
+"use strict";
+
+module.exports = function (options) {
+    var formMeta = options.formMeta,
+        tplNode = options.tplNode,
+        tplTree = options.tplTree;
+
+    var newFormData = {};
+    // //处理公共属性
+    // if(tplNode.uitype == UiTypeDef.radiogroup ){
+    //     // newFormData = BasePropValues(options);
+    // }
+    // //处理特有属性
+    // if(tplNode.uitype == UiTypeDef.radiogroup
+    //     ||tplNode.uitype == UiTypeDef.formitemw
+    //     ||tplNode.uitype == UiTypeDef.edititemw
+    // ) {
+    //     for(var i=0;i<formMeta.length;i++){
+    //         var meta = formMeta[i];
+    //         switch(meta.name){
+    //             case "defaultValue":{
+    //                 meta.defaultValue = tplNode.defaultValue !== undefined ? tplNode.defaultValue : meta.defaultValue;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
+    return newFormData;
+};
