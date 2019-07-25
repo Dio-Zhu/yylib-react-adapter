@@ -1,4 +1,4 @@
-import {UiDefines,EventAdapter} from './index-deps';
+import {UiLibrary, EventAdapter} from './index-deps';
 import Defines from './Defines';
 import AccordionsAdapter from './adapters/AccordionsAdapter';
 import AccordionAdapter from './adapters/AccordionAdapter';
@@ -80,135 +80,128 @@ import ButtonViewAdapter from "./viewadapters/ButtonViewAdapter";
 import FormItemwViewAdapter from "./viewadapters/FormItemwViewAdapter";
 import TableColViewAdapter from "./viewadapters/TableColViewAdapter";
 import SplitPaneViewAdapter from "./viewadapters/SplitPaneViewAdapter";
-const {UiTypeDef,UiTitleDef,UiIconDef,UiDefaultDef} = Defines;
+
+const {UiTypeDef, UiTitleDef, UiIconDef, UiDefaultDef} = Defines;
 const uiObjects = {};
-for(let key in UiTypeDef){
-    uiObjects[key] = uiObjects[key]||{};
+for (let key in UiTypeDef) {
+    uiObjects[key] = uiObjects[key] || {};
     uiObjects[key].uitype = UiTypeDef[key]
 }
-for(let key in UiTitleDef){
-    uiObjects[key] = uiObjects[key]||{};
+for (let key in UiTitleDef) {
+    uiObjects[key] = uiObjects[key] || {};
     uiObjects[key].uititile = UiTitleDef[key]
 }
-for(let key in UiIconDef){
-    uiObjects[key] = uiObjects[key]||{};
+for (let key in UiIconDef) {
+    uiObjects[key] = uiObjects[key] || {};
     uiObjects[key].uiicon = UiIconDef[key]
 }
-for(let key in UiDefaultDef){
-    uiObjects[key] = uiObjects[key]||{};
+for (let key in UiDefaultDef) {
+    uiObjects[key] = uiObjects[key] || {};
     uiObjects[key].uidefault = UiDefaultDef[key]
 }
-const uiDefines = new UiDefines();
-for(let key in uiObjects){
+const myLibrary = new UiLibrary();
+//----------------组件定义------------------
+for (let key in uiObjects) {
     let obj = uiObjects[key];
-    uiDefines.add(key,obj.uitype,obj.uititile,obj.uiicon,obj.uidefault);
+    myLibrary.addDefine(key, obj.uitype, obj.uititile, obj.uiicon, obj.uidefault);
 }
-module.exports = {
-    //组件定义
-    UiDefines:uiDefines,
-    //属性适配
-    PropAdapters:[
-        new AccordionAdapter(UiTypeDef.accordion),
-        new AccordionsAdapter(UiTypeDef.accordions),
-        new BpmSubmitwAdapter(UiTypeDef.bpmsubmitw),
-        new BpmApprovewAdapter(UiTypeDef.bpmapprovew),
-        new BreadcrumbAdapter(UiTypeDef.breadcrumb),
-        new BreadcrumbItemAdapter(UiTypeDef.breadcrumbitem),
-        new ButtonAdapter(UiTypeDef.button),
-        new AttachMgrwAdapter(UiTypeDef.attachmgrw),
-        new PageAdapter(UiTypeDef.page),
-        new CaptionAdapter(UiTypeDef.caption),
-        new FormwAdapter(UiTypeDef.formw),
-        new FormItemwAdapter(UiTypeDef.formitemw),
-        new OptionAdapter(UiTypeDef.option),
-        new ButtonSelectAdapter(UiTypeDef.buttonselect),
-        new ButtonItemAdapter(UiTypeDef.buttonitem),
-        new EditTablewAdapter(UiTypeDef.edittablew),
-        new EditItemWAdapter(UiTypeDef.edititemw),
-        new StepsAdapter(UiTypeDef.steps),
-        new StepAdapter(UiTypeDef.step),
-        new TableAdapter(UiTypeDef.table),
-        new TableAdapter(UiTypeDef.tablew),
-        new TableColAdapter(UiTypeDef.tablecol),
-        new TabsAdapter(UiTypeDef.tabs),
-        new TabAdapter(UiTypeDef.tab),
-        new RowAdapter(UiTypeDef.row),
-        new ColAdapter(UiTypeDef.col),
-        new PanelAdapter(UiTypeDef.panel),
-        new SearchConditionAdapter(UiTypeDef.searchcondition),
-        new SearchItemAdapter(UiTypeDef.searchitem),
-        new SearchSchemeAdapter(UiTypeDef.searchscheme),
-        new SelectAdapter(UiTypeDef.select),
-        new AutoSelectAdapter(UiTypeDef.autoselect),
-        new EnumSelectAdapter(UiTypeDef.enumselect),
-        new ScrollbarAdapter(UiTypeDef.scrollbar),
-        new TreeAdapter(UiTypeDef.tree),
-        new TreeNodeAdapter(UiTypeDef.treenode),
-        new DivideAdapter(UiTypeDef.divide),
-        new ModalAdapter(UiTypeDef.modal),
-        new StepsNavAdapter(UiTypeDef.stepsnav),
-        new StepsNavItemAdapter(UiTypeDef.stepsnavitem),
-        new EditorAdapter(UiTypeDef.editor),
-        new TagItemAdapter(UiTypeDef.tagitem),
-        new TagGroupAdapter(UiTypeDef.taggroup),
-        new ToolbarAdapter(UiTypeDef.toolbar),
-        new InputButtonAdapter(UiTypeDef.inputbutton),
-        new CascaderAdapter(UiTypeDef.cascader),
+//----------------属性适配--------------------
+myLibrary.addPropAdapter(UiTypeDef.accordion, AccordionAdapter);
+myLibrary.addPropAdapter(UiTypeDef.accordions, AccordionsAdapter);
+myLibrary.addPropAdapter(UiTypeDef.bpmsubmitw, BpmSubmitwAdapter);
+myLibrary.addPropAdapter(UiTypeDef.bpmapprovew, BpmApprovewAdapter);
+myLibrary.addPropAdapter(UiTypeDef.breadcrumb, BreadcrumbAdapter);
+myLibrary.addPropAdapter(UiTypeDef.breadcrumbitem, BreadcrumbItemAdapter);
+myLibrary.addPropAdapter(UiTypeDef.button, ButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.attachmgrw, AttachMgrwAdapter);
+myLibrary.addPropAdapter(UiTypeDef.page, PageAdapter);
+myLibrary.addPropAdapter(UiTypeDef.caption, CaptionAdapter);
+myLibrary.addPropAdapter(UiTypeDef.formw, FormwAdapter);
+myLibrary.addPropAdapter(UiTypeDef.formitemw, FormItemwAdapter);
+myLibrary.addPropAdapter(UiTypeDef.option, OptionAdapter);
+myLibrary.addPropAdapter(UiTypeDef.buttonselect, ButtonSelectAdapter);
+myLibrary.addPropAdapter(UiTypeDef.buttonitem, ButtonItemAdapter);
+myLibrary.addPropAdapter(UiTypeDef.edittablew, EditTablewAdapter);
+myLibrary.addPropAdapter(UiTypeDef.edititemw, EditItemWAdapter);
+myLibrary.addPropAdapter(UiTypeDef.steps, StepsAdapter);
+myLibrary.addPropAdapter(UiTypeDef.step, StepAdapter);
+myLibrary.addPropAdapter(UiTypeDef.table, TableAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tablew, TableAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tablecol, TableColAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tabs, TabsAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tab, TabAdapter);
+myLibrary.addPropAdapter(UiTypeDef.row, RowAdapter);
+myLibrary.addPropAdapter(UiTypeDef.col, ColAdapter);
+myLibrary.addPropAdapter(UiTypeDef.panel, PanelAdapter);
+myLibrary.addPropAdapter(UiTypeDef.searchcondition, SearchConditionAdapter);
+myLibrary.addPropAdapter(UiTypeDef.searchitem, SearchItemAdapter);
+myLibrary.addPropAdapter(UiTypeDef.searchscheme, SearchSchemeAdapter);
+myLibrary.addPropAdapter(UiTypeDef.select, SelectAdapter);
+myLibrary.addPropAdapter(UiTypeDef.autoselect, AutoSelectAdapter);
+myLibrary.addPropAdapter(UiTypeDef.enumselect, EnumSelectAdapter);
+myLibrary.addPropAdapter(UiTypeDef.scrollbar, ScrollbarAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tree, TreeAdapter);
+myLibrary.addPropAdapter(UiTypeDef.treenode, TreeNodeAdapter);
+myLibrary.addPropAdapter(UiTypeDef.divide, DivideAdapter);
+myLibrary.addPropAdapter(UiTypeDef.modal, ModalAdapter);
+myLibrary.addPropAdapter(UiTypeDef.stepsnav, StepsNavAdapter);
+myLibrary.addPropAdapter(UiTypeDef.stepsnavitem, StepsNavItemAdapter);
+myLibrary.addPropAdapter(UiTypeDef.editor, EditorAdapter);
+myLibrary.addPropAdapter(UiTypeDef.tagitem, TagItemAdapter);
+myLibrary.addPropAdapter(UiTypeDef.taggroup, TagGroupAdapter);
+myLibrary.addPropAdapter(UiTypeDef.toolbar, ToolbarAdapter);
+myLibrary.addPropAdapter(UiTypeDef.inputbutton, InputButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.cascader, CascaderAdapter);
 
-        new AttachuploadAdapter(UiTypeDef.attachupload),
-        new PrintButtonAdapter(UiTypeDef.printbutton),
-        new RadioAdapter(UiTypeDef.radio),
-        new RadioGroupAdapter(UiTypeDef.radiogroup),
-        new CheckboxAdapter(UiTypeDef.checkbox),
-        new CheckboxGroupAdapter(UiTypeDef.checkboxgroup),
-        new NumberAdapter(UiTypeDef.inputnumber),
-        new DateAdapter(UiTypeDef.datepicker),
-        new TimeAdapter(UiTypeDef.timepicker),
-        new RangePickerAdapter(UiTypeDef.rangepicker),
-        new ImageUploadAdapter(UiTypeDef.imageupload),
-        new InputAdapter(UiTypeDef.input),
-        new InputMapAdapter(UiTypeDef.inputmap),
-        new ButtonReferAdapter(UiTypeDef.buttonrefer),
-        new InputReferAdapter(UiTypeDef.inputrefer),
-        new SwitchAdapter(UiTypeDef.switch),
-        new TextareaAdapter(UiTypeDef.textarea),
-        new TextAdapter(UiTypeDef.text),
-        new IframeAdapter(UiTypeDef.iframe),
-        new SplitPaneAdapter(UiTypeDef.splitpane),
-        new FilterAreaAdapter(UiTypeDef.filterarea),
-        new EChartsAdapter(UiTypeDef.chartw),
+myLibrary.addPropAdapter(UiTypeDef.attachupload, AttachuploadAdapter);
+myLibrary.addPropAdapter(UiTypeDef.printbutton, PrintButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.radio, RadioAdapter);
+myLibrary.addPropAdapter(UiTypeDef.radiogroup, RadioGroupAdapter);
+myLibrary.addPropAdapter(UiTypeDef.checkbox, CheckboxAdapter);
+myLibrary.addPropAdapter(UiTypeDef.checkboxgroup, CheckboxGroupAdapter);
+myLibrary.addPropAdapter(UiTypeDef.inputnumber, NumberAdapter);
+myLibrary.addPropAdapter(UiTypeDef.datepicker, DateAdapter);
+myLibrary.addPropAdapter(UiTypeDef.timepicker, TimeAdapter);
+myLibrary.addPropAdapter(UiTypeDef.rangepicker, RangePickerAdapter);
+myLibrary.addPropAdapter(UiTypeDef.imageupload, ImageUploadAdapter);
+myLibrary.addPropAdapter(UiTypeDef.input, InputAdapter);
+myLibrary.addPropAdapter(UiTypeDef.inputmap, InputMapAdapter);
+myLibrary.addPropAdapter(UiTypeDef.buttonrefer, ButtonReferAdapter);
+myLibrary.addPropAdapter(UiTypeDef.inputrefer, InputReferAdapter);
+myLibrary.addPropAdapter(UiTypeDef.switch, SwitchAdapter);
+myLibrary.addPropAdapter(UiTypeDef.textarea, TextareaAdapter);
+myLibrary.addPropAdapter(UiTypeDef.text, TextAdapter);
+myLibrary.addPropAdapter(UiTypeDef.iframe, IframeAdapter);
+myLibrary.addPropAdapter(UiTypeDef.splitpane, SplitPaneAdapter);
+myLibrary.addPropAdapter(UiTypeDef.filterarea, FilterAreaAdapter);
+myLibrary.addPropAdapter(UiTypeDef.chartw, EChartsAdapter);
 
-        //---------------内置模板-------------------begin
-        new PageAdapter(UiTypeDef.CPListPage),
-        new TableAdapter(UiTypeDef.CPListTable),
-        new PageAdapter(UiTypeDef.CPCardPage),
-        new CPCardTitleAdapter(UiTypeDef.CPCardTitle),
-        new CPIconButtonAdapter(UiTypeDef.CPIconButton),
-        new CPDropdownButtonAdapter(UiTypeDef.CPDropdownButton),
-        new CPGoBackAdapter(UiTypeDef.CPGoBack),
-        new SearchConditionAdapter(UiTypeDef.CPSearchBar),
-        new CPAuditInfoAdapter(UiTypeDef.CPAuditInfo),
-        new BpmSubmitwAdapter(UiTypeDef.CPBpmSubmit),
-        new BpmApprovewAdapter(UiTypeDef.CPBpmApprove),
-        new AttachMgrwAdapter(UiTypeDef.CPAttachMgr),
+//---------------内置模板-------------------begin
+myLibrary.addPropAdapter(UiTypeDef.CPListPage, PageAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPListTable, TableAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPCardPage, PageAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPCardTitle, CPCardTitleAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPIconButton, CPIconButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPDropdownButton, CPDropdownButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPGoBack, CPGoBackAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPSearchBar, SearchConditionAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPAuditInfo, CPAuditInfoAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPBpmSubmit, BpmSubmitwAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPBpmApprove, BpmApprovewAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPAttachMgr, AttachMgrwAdapter);
 
-        new PrintButtonAdapter(UiTypeDef.CPPrintButton),
-        new CPPluginMgrAdapter(UiTypeDef.CPPluginMgr),
-        new CPFilterBarAdapter(UiTypeDef.CPFilterBar),
-        new CPFilterRowAdapter(UiTypeDef.CPFilterRow),
-        new CPFRFieldAdapter(UiTypeDef.CPFRField)
-        //---------------内置模板----------------------end
-    ],
-    //事件适配
-    EventAdapters:[
-        new EventAdapter(UiTypeDef.button)
-    ],
-    //视图适配
-    ViewAdapters:[
-        new ButtonViewAdapter(UiTypeDef.button),
-        new FormItemwViewAdapter(UiTypeDef.formitemw),
-        new TableColViewAdapter(UiTypeDef.tablecol),
-        new TableColViewAdapter(UiTypeDef.edititemw),
-        new SplitPaneViewAdapter(UiTypeDef.splitpane)
-    ]
-};
+myLibrary.addPropAdapter(UiTypeDef.CPPrintButton, PrintButtonAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPPluginMgr, CPPluginMgrAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPFilterBar, CPFilterBarAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPFilterRow, CPFilterRowAdapter);
+myLibrary.addPropAdapter(UiTypeDef.CPFRField, CPFRFieldAdapter);
+//---------------内置模板----------------------end
+//------------事件适配---------------
+myLibrary.addEventAdapter(UiTypeDef.button, EventAdapter);
+//------------视图适配----------------
+myLibrary.addViewAdapter(UiTypeDef.button, ButtonViewAdapter);
+myLibrary.addViewAdapter(UiTypeDef.formitemw, FormItemwViewAdapter);
+myLibrary.addViewAdapter(UiTypeDef.tablecol, TableColViewAdapter);
+myLibrary.addViewAdapter(UiTypeDef.edititemw, TableColViewAdapter);
+myLibrary.addViewAdapter(UiTypeDef.splitpane, SplitPaneViewAdapter);
+export default myLibrary;
