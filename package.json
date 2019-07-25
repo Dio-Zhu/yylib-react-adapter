@@ -9,10 +9,10 @@
     "clean-dist": "rimraf lib dist coverage",
     "build-babel": "rimraf lib dist coverage && babel ./src --out-dir ./dist",
     "build-min": "webpack --display-error-details --progress --colors -p --config webpack.config.js",
-    "build-src": "webpack --display-error-details --progress --colors -d --config webpack.config.js",
+    "build-src": "webpack --display-error-details --progress --colors --config webpack.config.js",
     "start": "webpack-dev-server --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build-babel"
+    "prepublish": "npm run build-src"
   },
   "author": "Dio.Zhu",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "zzj-genadapter": "^0.1.4"
+    "zzj-genadapter": "^0.1.7"
   },
   "repository": {
     "type": "git",

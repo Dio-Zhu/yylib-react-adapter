@@ -8,8 +8,8 @@ const clientConfig = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'yylib-react-adapter.js',
-        libraryTarget: 'umd',
-        library: 'reactAdapter'
+        libraryTarget: 'jsonp',//注意打包为jsonp回调
+        library: 'registerLibrary'//注意使用此特定名称
     },
     module: {
         rules: [
@@ -27,11 +27,11 @@ const clientConfig = {
     resolve: {
         extensions: ['.js', '.json', '.jsx']
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {NODE_ENV: JSON.stringify('production')}
+        }),
     //不需要混淆
-    // plugins: [
-    //     new webpack.DefinePlugin({
-    //         'process.env': {NODE_ENV: JSON.stringify('production')}
-    //     }),
     //     new webpack.optimize.UglifyJsPlugin({
     //         uglifyOptions: {
     //             ecma: 8,
@@ -44,15 +44,7 @@ const clientConfig = {
     //             warnings: true
     //         }
     //     })
-    // ],
-    // node: {
-    //     dgram: 'empty',
-    //     fs: 'empty',
-    //     net: 'empty',
-    //     tls: 'empty',
-    //     child_process: 'empty'
-    // },
-    // target: 'web'
+    ]
 };
 
 module.exports = clientConfig;
