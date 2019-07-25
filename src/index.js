@@ -99,7 +99,7 @@ for (let key in UiDefaultDef) {
     uiObjects[key] = uiObjects[key] || {};
     uiObjects[key].uidefault = UiDefaultDef[key]
 }
-const myLibrary = new UiLibrary();
+const myLibrary = new UiLibrary('yylib-react-adapter');
 //----------------组件定义------------------
 for (let key in uiObjects) {
     let obj = uiObjects[key];

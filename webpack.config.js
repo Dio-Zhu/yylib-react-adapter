@@ -27,31 +27,32 @@ const clientConfig = {
     resolve: {
         extensions: ['.js', '.json', '.jsx']
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {NODE_ENV: JSON.stringify('production')}
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            uglifyOptions: {
-                ecma: 8,
-                compress: {
-                    comparisons: false
-                },
-                output: {
-                    ascii_only: true
-                },
-                warnings: true
-            }
-        })
-    ],
-    node: {
-        dgram: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-        child_process: 'empty'
-    },
-    target: 'web'
+    //不需要混淆
+    // plugins: [
+    //     new webpack.DefinePlugin({
+    //         'process.env': {NODE_ENV: JSON.stringify('production')}
+    //     }),
+    //     new webpack.optimize.UglifyJsPlugin({
+    //         uglifyOptions: {
+    //             ecma: 8,
+    //             compress: {
+    //                 comparisons: false
+    //             },
+    //             output: {
+    //                 ascii_only: true
+    //             },
+    //             warnings: true
+    //         }
+    //     })
+    // ],
+    // node: {
+    //     dgram: 'empty',
+    //     fs: 'empty',
+    //     net: 'empty',
+    //     tls: 'empty',
+    //     child_process: 'empty'
+    // },
+    // target: 'web'
 };
 
 module.exports = clientConfig;
