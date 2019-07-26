@@ -7,7 +7,7 @@ const clientConfig = {
     entry: path.resolve(__dirname, 'src/index'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'yylib-react-adapter.js',
+        filename: 'index.js',
         libraryTarget: 'jsonp',//注意打包为jsonp回调
         library: 'registerLibrary'//注意使用此特定名称
     },
