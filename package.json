@@ -32,7 +32,7 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "zzj-genadapter": "^0.1.8"
+    "zzj-genadapter": "latest"
   },
   "repository": {
     "type": "git",

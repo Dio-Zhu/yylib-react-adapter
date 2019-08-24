@@ -210,9 +210,6 @@ UiTitleDef.attachmgrw = '附件管理';
 UiTypeDef.editor = 'YYEditor';
 UiTitleDef.editor = '富文本编辑';
 
-UiTypeDef.plugin = 'UnKnowWidget';
-UiTitleDef.plugin = '自定义组件';
-UiDefaultDef.plugin = {uiplugin:true};
 
 UiTypeDef.steps = 'YYSteps';
 UiTitleDef.steps = '步骤条';
