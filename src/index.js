@@ -1,5 +1,6 @@
 import {UiLibrary, EventAdapter} from './index-deps';
 import Defines from './Defines';
+import GlobalAdapter from './GlobalAdapter';
 import AccordionsAdapter from './adapters/AccordionsAdapter';
 import AccordionAdapter from './adapters/AccordionAdapter';
 import AttachMgrwAdapter from './adapters/forminputs/AttachMgrwAdapter';
@@ -81,30 +82,20 @@ import FormItemwViewAdapter from "./viewadapters/FormItemwViewAdapter";
 import TableColViewAdapter from "./viewadapters/TableColViewAdapter";
 import SplitPaneViewAdapter from "./viewadapters/SplitPaneViewAdapter";
 
-const {UiTypeDef, UiTitleDef, UiIconDef, UiDefaultDef} = Defines;
-const uiObjects = {};
-for (let key in UiTypeDef) {
-    uiObjects[key] = uiObjects[key] || {};
-    uiObjects[key].uitype = UiTypeDef[key]
+const {UiTypeDef, UiObjects} = Defines;
+
+const myLibrary = new UiLibrary('yylib-react');
+
+//----------------注册组件定义------------------
+for (let key in UiObjects) {
+    let obj = UiObjects[key];
+    myLibrary.addDefine(key, obj.uitype, obj.uititle, obj.uiicon, obj.uidefault);
 }
-for (let key in UiTitleDef) {
-    uiObjects[key] = uiObjects[key] || {};
-    uiObjects[key].uititile = UiTitleDef[key]
-}
-for (let key in UiIconDef) {
-    uiObjects[key] = uiObjects[key] || {};
-    uiObjects[key].uiicon = UiIconDef[key]
-}
-for (let key in UiDefaultDef) {
-    uiObjects[key] = uiObjects[key] || {};
-    uiObjects[key].uidefault = UiDefaultDef[key]
-}
-const myLibrary = new UiLibrary('yylib-react-adapter');
-//----------------组件定义------------------
-for (let key in uiObjects) {
-    let obj = uiObjects[key];
-    myLibrary.addDefine(key, obj.uitype, obj.uititile, obj.uiicon, obj.uidefault);
-}
+//----------------注册组件定义------------------end
+
+myLibrary.setGlobalAdapter(GlobalAdapter);
+
+
 //----------------属性适配--------------------
 myLibrary.addPropAdapter(UiTypeDef.accordion, AccordionAdapter);
 myLibrary.addPropAdapter(UiTypeDef.accordions, AccordionsAdapter);

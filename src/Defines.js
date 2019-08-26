@@ -300,9 +300,30 @@ UiTitleDef.IjzListView = '列表卡片视图';
 /**----模板-建造公有云----end**/
 
 
+//-------------组装成对象集合-------------
+const UiObjects = {};
+for (let key in UiTypeDef) {
+    UiObjects[key] = UiObjects[key] || {};
+    UiObjects[key].uitype = UiTypeDef[key]
+}
+for (let key in UiTitleDef) {
+    UiObjects[key] = UiObjects[key] || {};
+    UiObjects[key].uititle = UiTitleDef[key]
+}
+for (let key in UiIconDef) {
+    UiObjects[key] = UiObjects[key] || {};
+    UiObjects[key].uiicon = UiIconDef[key]
+}
+for (let key in UiDefaultDef) {
+    UiObjects[key] = UiObjects[key] || {};
+    UiObjects[key].uidefault = UiDefaultDef[key]
+}
+//-------------组装成对象集合-------------end
+
 module.exports = {
     UiTypeDef,
     UiTitleDef,
     UiDefaultDef,
-    UiIconDef
+    UiIconDef,
+    UiObjects
 };
