@@ -1,6 +1,6 @@
 import {UiLibrary, EventAdapter} from './index-deps';
 import Defines from './Defines';
-import GlobalAdapter from './GlobalAdapter';
+import MyGlobalAdapter from './MyGlobalAdapter';
 import AccordionsAdapter from './adapters/AccordionsAdapter';
 import AccordionAdapter from './adapters/AccordionAdapter';
 import AttachMgrwAdapter from './adapters/forminputs/AttachMgrwAdapter';
@@ -93,7 +93,7 @@ for (let key in UiObjects) {
 }
 //----------------注册组件定义------------------end
 
-myLibrary.setGlobalAdapter(GlobalAdapter);
+myLibrary.setGlobalAdapter(MyGlobalAdapter);
 
 
 //----------------属性适配--------------------
