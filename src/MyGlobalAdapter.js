@@ -95,6 +95,7 @@ export default class MyGlobalAdapter extends GlobalAdapter{
      * @param options
      */
     onUiSubset(options){
+        let {tplNode} = options;
         // 只有唯一父级的子级
         let uniqueParentItems = ['option', 'tablecol', 'buttonitem', 'accordion', 'tab', 'tagitem', 'breadcrumbitem', 'edititemw',
             'col', 'searchitem', 'treenode', 'stepsnavitem', 'radio', 'checkbox', 'step'];
@@ -174,6 +175,6 @@ export default class MyGlobalAdapter extends GlobalAdapter{
 
         subset[UiTypeDef.CPCardPage] = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
         subset[UiTypeDef.CPCardHeader] = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
-        return subset;
+        return tplNode?subset[tplNode.uitype]:null;
     }
 }

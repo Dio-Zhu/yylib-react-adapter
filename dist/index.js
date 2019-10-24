@@ -5856,32 +5856,125 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
              */
 
             module.exports = {
-                /** 基本类型 */
-                Select: 'Select', //下拉选择
-                Text: 'Text', //文本输入
-                Bool: 'Bool', //开关
-                Number: 'Number', //数值输入
-                Checkbox: 'Checkbox', //勾选
-                Color: 'Color', //颜色选择
-                Icon: 'Icon', //图标选择
-                Date: 'Date', //日期
-                Time: 'Time', //时间
-                Refer: 'Refer', //参照
-                SelectTree: 'SelectTree', //下拉🌲
-                Textarea: 'Textarea', //多行文本
-                TitleGroup: 'TitleGroup', //表头合并配置
-                EventActions: 'EventActions', //组织事件动作配置
-                MathFormula: 'MathFormula', //计算公式列配置
-                LogicFormula: 'LogicFormula', //逻辑公式配置
-                EditorIcons: 'EditorIcons', //仅限富编辑器使用的图标
-                Pagination: 'Pagination', //分页配置
+                /**
+                 * 下拉选择
+                 * 配合options属性使用
+                 */
+                Select: 'Select',
+                /**
+                 * 文本输入
+                 */
+                Text: 'Text',
+                /**
+                 * 开关按钮
+                 */
+                Bool: 'Bool',
+                /**
+                 * 数字输入
+                 */
+                Number: 'Number',
+                /**
+                 * 勾选框
+                 */
+                Checkbox: 'Checkbox',
+                /**
+                 * 颜色面板
+                 */
+                Color: 'Color',
+                /**
+                 * 图标库
+                 */
+                Icon: 'Icon',
+                /**
+                 * 选择日期
+                 */
+                Date: 'Date',
+                /**
+                 * 选择时间
+                 */
+                Time: 'Time',
+                /**
+                 * 参照
+                 */
+                Refer: 'Refer',
+                /**
+                 * 下拉选择树
+                 */
+                SelectTree: 'SelectTree',
+                /**
+                 * 多行文本框
+                 */
+                Textarea: 'Textarea',
+                /**
+                 * JSON编辑器
+                 */
+                Json: 'Json',
+                /**
+                 * CSS的样式配置器
+                 */
+                CssStyle: 'CssStyle',
+                /**
+                 * 多表头合并设计器
+                 */
+                TitleGroup: 'TitleGroup',
+                /**
+                 * 动作事件设计器
+                 */
+                EventActions: 'EventActions',
+                /**
+                 * 计算公式设计器
+                 */
+                MathFormula: 'MathFormula',
+                /**
+                 * 逻辑公式设计器
+                 */
+                LogicFormula: 'LogicFormula',
+                /**
+                 * 富文本图标框（仅限配套的富文本框使用）
+                 */
+                EditorIcons: 'EditorIcons',
+                /**
+                 * 分页配置器
+                 */
+                Pagination: 'Pagination',
+                /**
+                 * 带开关的文本输入框
+                 */
                 SwitchText: 'SwitchText',
-                EnumSelect: 'EnumSelect', //枚举档案
-                ReferEditRelation: 'ReferEditRelation', // 参照编辑关联项
-                LocalData: 'LocalData', //数据表格本地数据源配置
-                RowMenu: 'RowMenu', //表格行操作菜单
-                FilterAreaConfig: 'FilterAreaConfig', //筛选栏配置
-                EChartData: 'EChartData' //Echart图表配置
+                /**
+                 * 枚举档案选择（仅限配套的枚举档案使用）
+                 */
+                EnumSelect: 'EnumSelect',
+                /**
+                 * 参照映射关联项配置（仅限配套的参照使用）
+                 */
+                ReferEditRelation: 'ReferEditRelation',
+                /**
+                 * 数据表格本地数据配置（仅限配套的表格使用）
+                 */
+                LocalData: 'LocalData',
+                /**
+                 * 表格行操作菜单（仅限配套的表格使用）
+                 */
+                RowMenu: 'RowMenu',
+                /**
+                 * 筛选栏配置（仅限配套的筛选栏配置）
+                 */
+                FilterAreaConfig: 'FilterAreaConfig',
+                /**
+                 * Echart图表属性配置器
+                 */
+                EChartData: 'EChartData',
+                /**
+                 * 参照带入配置（仅限配套的iuap参照配置）
+                 */
+                ReferLookup: 'ReferLookup',
+
+                /**
+                 * 带Iframe的弹窗
+                 */
+                IframeModal: 'IframeModal'
+
             };
 
             /***/
@@ -6027,6 +6120,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }, {
                     key: "onDataValid",
                     value: function onDataValid(options) {}
+
+                    /**
+                     * 当数据节点被移除时的校验
+                     * @param options
+                     * TODO 待实现
+                     */
+
+                }, {
+                    key: "onRemoveDataValid",
+                    value: function onRemoveDataValid(options) {}
                 }]);
 
                 return ViewAdapter;
@@ -6305,7 +6408,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 var formMeta = options.formMeta,
                     formData = options.formData,
                     tplNode = options.tplNode,
-                    tplTree = options.tplTree;
+                    tplTree = options.tplTree,
+                    keepDefaultValue = options.keepDefaultValue;
 
                 for (var i = 0; i < formMeta.length; i++) {
                     var meta = formMeta[i];
@@ -6331,14 +6435,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         case "themeClassName":
                         case "className":
                         default:
-                            //默认值===表单项值，则不生成节点属性
-                            if (meta.defaultValue === value) {
-                                delete tplNode[meta.name];
+                            if (keepDefaultValue === false) {
+                                //属性值=默认值则不保留此属性
+                                //默认值===表单项值，则不生成节点属性
+                                if (meta.defaultValue === value) {
+                                    delete tplNode[meta.name];
+                                } else {
+                                    isExistSet(tplNode, meta.name, value);
+                                }
                             } else {
-                                isExistSet(tplNode, meta.name, value);
+                                //保留属性默认值
+                                tplNode[meta.name] = value;
                             }
                             break;
-
                     }
                 }
             };
@@ -6611,6 +6720,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     this.UiTitle = {};
                     this.UiIcon = {};
                     this.UiDefault = {};
+                    this.UiIsView = {};
                 }
 
                 /**
@@ -6620,15 +6730,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  * @param uititle       组件名称
                  * @param uiicon        组件图标
                  * @param uidefault     组件缺省属性
+                 * @param uiisview      组件是否为视图
                  */
 
                 _createClass(UiDefines, [{
-                    key: "add",
-                    value: function add(primaryKey, uitype, uititle, uiicon, uidefault) {
+                    key: 'add',
+                    value: function add(primaryKey, uitype, uititle, uiicon, uidefault, uiisview) {
                         this.UiType[primaryKey] = uitype;
                         this.UiTitle[primaryKey] = uititle;
                         this.UiIcon[primaryKey] = uiicon;
                         this.UiDefault[primaryKey] = uidefault;
+                        this.UiIsView[primaryKey] = typeof uiisview == 'boolean' ? uiisview : true;
                     }
 
                     /**
@@ -6637,28 +6749,71 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                      */
 
                 }, {
-                    key: "remove",
+                    key: 'remove',
                     value: function remove(primaryKey) {
                         delete this.UiType[primaryKey];
                         delete this.UiTitle[primaryKey];
                         delete this.UiIcon[primaryKey];
                         delete this.UiDefault[primaryKey];
+                        delete this.UiIsView[primaryKey];
                     }
 
                     /**
-                     * 获得一个组件的定义
+                     * 通过key获取一个组件的定义
                      * @param primaryKey
                      */
 
                 }, {
-                    key: "get",
+                    key: 'get',
                     value: function get(primaryKey) {
                         return {
                             uitype: this.UiType[primaryKey],
                             uititle: this.UiTitle[primaryKey],
                             uiicon: this.UiIcon[primaryKey],
-                            uidefault: this.UiDefault[primaryKey]
+                            uidefault: this.UiDefault[primaryKey],
+                            uiisview: this.UiIsView[primaryKey]
                         };
+                    }
+
+                    /**
+                     * 通过uitype获取一个组件的定义(找到第一个匹配的即返回)
+                     * @param uitype
+                     */
+
+                }, {
+                    key: 'getByUiType',
+                    value: function getByUiType(uitype) {
+                        for (var i in this.UiType) {
+                            if (this.UiType[i] == uitype) {
+                                return this.get(i);
+                            }
+                        }
+                    }
+
+                    /**
+                     * 通过uitype获取一个组件的key
+                     * @param uitype
+                     */
+
+                }, {
+                    key: 'getKeyByUiType',
+                    value: function getKeyByUiType(uitype) {
+                        for (var i in this.UiType) {
+                            if (this.UiType[i] == uitype) {
+                                return i;
+                            }
+                        }
+                    }
+
+                    /**
+                     * 获取全部键值
+                     * @return {string[]}
+                     */
+
+                }, {
+                    key: 'getKeys',
+                    value: function getKeys() {
+                        return Object.keys(this.UiType);
                     }
                 }]);
 
@@ -6730,7 +6885,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
                     /**
                      * 解析需要显示的源码内容
-                     * @param options {
+                     * @param options
+                     * {
                      *     data:object //需要解析的json数据对象
                      * }
                      * @return string //返回生成的源码字符串
@@ -6741,19 +6897,26 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     value: function onSourceCodes(options) {}
 
                     /**
-                     * 获取全部组件项与可用子组件的关系
-                     * @param options
-                     * @return object
-                     * 格式要求：{
-                     *     'uiTypeA':['uiTypeSub1','uiTypeSub2',...],
-                     *     'uiTypeB':['uiTypeSub1','uiTypeSub3',...],
-                     *     ...
-                     * }
+                     * 获取当前组件可用的子组件类型
+                     * @param options {tplNode}
+                     * @return array
+                     * 格式要求：
+                     * ['uiTypeSub1','uiTypeSub2',...]
                      */
 
                 }, {
                     key: "onUiSubset",
                     value: function onUiSubset(options) {}
+
+                    /**
+                     * TODO 待处理
+                     * 新建页面时的触发的生命周期
+                     * @param options
+                     */
+
+                }, {
+                    key: "onCreatePage",
+                    value: function onCreatePage(options) {}
                 }]);
 
                 return GlobalAdapter;
@@ -6908,12 +7071,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  * @param uititle       组件名称
                  * @param uiicon        组件图标
                  * @param uidefault     组件缺省属性
+                 * @param uiisview      组件是否为视图
                  */
 
                 _createClass(UiLibrary, [{
                     key: "addDefine",
-                    value: function addDefine(primaryKey, uitype, uititle, uiicon, uidefault) {
-                        this.uiDefines.add(primaryKey, uitype, uititle, uiicon, uidefault);
+                    value: function addDefine() {
+                        this.uiDefines.add.apply(this.uiDefines, arguments);
                     }
                     /**
                      * 移除一个组件的定义
@@ -6942,13 +7106,33 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                      */
 
                 }, {
-                    key: "addPropAdapter",
+                    key: "getUiDefines",
+                    value: function getUiDefines() {
+                        return this.uiDefines;
+                    }
+
+                    /**
+                     * 注册全部组件的定义
+                     */
+
+                }, {
+                    key: "setUiDefines",
+                    value: function setUiDefines(uiDefines) {
+                        if (uiDefines instanceof _UiDefines2.default) {
+                            this.uiDefines = uiDefines;
+                            return;
+                        }
+                        console.warn('setUiDefines fail ,that is not UiDefines class!');
+                    }
 
                     /**
                      * 添加属性适配类
                      * @param primaryKey
                      * @param AdapterClass 继承于PropAdapter的类
                      */
+
+                }, {
+                    key: "addPropAdapter",
                     value: function addPropAdapter(primaryKey, AdapterClass) {
                         if (typeof AdapterClass == 'function') {
                             var adapter = new AdapterClass(primaryKey);
@@ -7099,11 +7283,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                             }
                         }
                         console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
-                    }
-                }, {
-                    key: "UiDefines",
-                    get: function get() {
-                        return this.uiDefines;
                     }
                 }, {
                     key: "PropAdapters",
@@ -7425,7 +7604,9 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
     }, {
         key: 'onUiSubset',
         value: function onUiSubset(options) {
+            var tplNode = options.tplNode;
             // 只有唯一父级的子级
+
             var uniqueParentItems = ['option', 'tablecol', 'buttonitem', 'accordion', 'tab', 'tagitem', 'breadcrumbitem', 'edititemw', 'col', 'searchitem', 'treenode', 'stepsnavitem', 'radio', 'checkbox', 'step'];
             var subset = {};
             subset[_Defines.UiTypeDef.page] = _UiSubUtils2.default.exclude(_Defines.UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar', 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr', 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
@@ -7493,7 +7674,7 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
 
             subset[_Defines.UiTypeDef.CPCardPage] = _UiSubUtils2.default.include(_Defines.UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
             subset[_Defines.UiTypeDef.CPCardHeader] = _UiSubUtils2.default.include(_Defines.UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
-            return subset;
+            return tplNode ? subset[tplNode.uitype] : null;
         }
     }]);
 
