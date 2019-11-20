@@ -5703,7 +5703,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             /******/__webpack_require__.p = "";
             /******/
             /******/ // Load entry module and return exports
-            /******/return __webpack_require__(__webpack_require__.s = 12);
+            /******/return __webpack_require__(__webpack_require__.s = 13);
             /******/
         }(
         /************************************************************************/
@@ -5727,16 +5727,40 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 };
             }();
 
+            var _SuperAdapter2 = __webpack_require__(2);
+
+            var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
+
+            function _interopRequireDefault(obj) {
+                return obj && obj.__esModule ? obj : { default: obj };
+            }
+
             function _classCallCheck(instance, Constructor) {
                 if (!(instance instanceof Constructor)) {
                     throw new TypeError("Cannot call a class as a function");
                 }
             }
 
+            function _possibleConstructorReturn(self, call) {
+                if (!self) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+            }
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+                }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+            } /**
+               * 基础数据转换适配器
+               */
+
             /**
-             * 基础数据转换适配器
+             * 基础数据转换器
              */
-            var BaseDataAdapter = function () {
+            var BaseDataAdapter = function (_SuperAdapter) {
+                _inherits(BaseDataAdapter, _SuperAdapter);
+
                 /**
                  * @desc 构建对象
                  * @param primaryKey 主键/组件标识
@@ -5744,7 +5768,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 function BaseDataAdapter(primaryKey) {
                     _classCallCheck(this, BaseDataAdapter);
 
-                    this.primaryKey = primaryKey;
+                    var _this = _possibleConstructorReturn(this, (BaseDataAdapter.__proto__ || Object.getPrototypeOf(BaseDataAdapter)).call(this));
+
+                    _this.primaryKey = primaryKey;
+                    return _this;
                 }
 
                 /**
@@ -5761,7 +5788,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     //--------------生命周期方法--------------------
                     /**
                      * @desc 构建适配页面(元数据)
-                     * @param options {
+                     * @param options
+                     * {
                      *     tplNode,     //当前数据节点值
                      *     tplTree,     //当前数据树
                      *     productType, //所属产品类型
@@ -5799,6 +5827,22 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }, {
                     key: "onCreateData",
                     value: function onCreateData(options) {}
+
+                    /**
+                     * @desc 数据节点位置变更时触发
+                     * @param options
+                     * {
+                     *     tplTree, //移动后的数据树
+                     *     tplNode, //移动后的节点
+                     *     tplParentNode,//移动后的父节点
+                     *     tplSourceNode,//移动前的节点
+                     *     tplSourceParentNode,//移动前的父节点
+                     * }
+                     */
+
+                }, {
+                    key: "onMoveData",
+                    value: function onMoveData(options) {}
 
                     /**
                      * @desc 将数据转换为配置值
@@ -5840,7 +5884,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }]);
 
                 return BaseDataAdapter;
-            }();
+            }(_SuperAdapter3.default);
 
             exports.default = BaseDataAdapter;
 
@@ -5909,6 +5953,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  * JSON编辑器
                  */
                 Json: 'Json',
+                /**
+                 * 富文本编辑器
+                 */
+                RichText: 'RichText',
                 /**
                  * CSS的样式配置器
                  */
@@ -6004,36 +6052,37 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
             }
 
-            /**
-             * 基础视图转换适配器
-             */
-            var BaseViewAdapter = function () {
-                /**
-                 * 构建对象
-                 * @param primaryKey 主键/组件标识
-                 */
-                function BaseViewAdapter(primaryKey) {
-                    _classCallCheck(this, BaseViewAdapter);
-
-                    this.primaryKey = primaryKey;
+            var SuperAdapter = function () {
+                function SuperAdapter() {
+                    _classCallCheck(this, SuperAdapter);
                 }
-
                 /**
-                 * 获取主键/组件标识
-                 * @return {string}
+                 * 调用自生的方法
+                 * @param funcName
+                 * @param funcOptions
                  */
 
-                _createClass(BaseViewAdapter, [{
-                    key: "getPrimaryKey",
-                    value: function getPrimaryKey() {
-                        return this.primaryKey;
+                _createClass(SuperAdapter, [{
+                    key: 'callFunction',
+                    value: function callFunction(funcName, funcOptions) {
+                        if (!funcName) {
+                            console.warn('callFunction not funcName', this);
+                            return;
+                        }
+                        var func = this[funcName];
+                        if (typeof func !== 'function') {
+                            console.warn('callFunction is not function:' + funcName, this);
+                            return;
+                        }
+                        var funcResult = func.call(this, funcOptions);
+                        return funcResult;
                     }
                 }]);
 
-                return BaseViewAdapter;
+                return SuperAdapter;
             }();
 
-            exports.default = BaseViewAdapter;
+            exports.default = SuperAdapter;
 
             /***/
         },
@@ -6056,7 +6105,89 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 };
             }();
 
-            var _BaseViewAdapter2 = __webpack_require__(2);
+            var _SuperAdapter2 = __webpack_require__(2);
+
+            var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
+
+            function _interopRequireDefault(obj) {
+                return obj && obj.__esModule ? obj : { default: obj };
+            }
+
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) {
+                    throw new TypeError("Cannot call a class as a function");
+                }
+            }
+
+            function _possibleConstructorReturn(self, call) {
+                if (!self) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+            }
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+                }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+            } /**
+               * 基础视图转换适配器
+               */
+
+            var BaseViewAdapter = function (_SuperAdapter) {
+                _inherits(BaseViewAdapter, _SuperAdapter);
+
+                /**
+                 * 构建对象
+                 * @param primaryKey 主键/组件标识
+                 */
+                function BaseViewAdapter(primaryKey) {
+                    _classCallCheck(this, BaseViewAdapter);
+
+                    var _this = _possibleConstructorReturn(this, (BaseViewAdapter.__proto__ || Object.getPrototypeOf(BaseViewAdapter)).call(this));
+
+                    _this.primaryKey = primaryKey;
+                    return _this;
+                }
+
+                /**
+                 * 获取主键/组件标识
+                 * @return {string}
+                 */
+
+                _createClass(BaseViewAdapter, [{
+                    key: "getPrimaryKey",
+                    value: function getPrimaryKey() {
+                        return this.primaryKey;
+                    }
+                }]);
+
+                return BaseViewAdapter;
+            }(_SuperAdapter3.default);
+
+            exports.default = BaseViewAdapter;
+
+            /***/
+        },
+        /* 4 */
+        /***/function (module, exports, __webpack_require__) {
+
+            "use strict";
+
+            Object.defineProperty(exports, "__esModule", {
+                value: true
+            });
+
+            var _createClass = function () {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }return function (Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+                };
+            }();
+
+            var _BaseViewAdapter2 = __webpack_require__(3);
 
             var _BaseViewAdapter3 = _interopRequireDefault(_BaseViewAdapter2);
 
@@ -6099,11 +6230,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     //--------------生命周期方法--------------------
                     /**
                      * @desc 构建数据节点的显示视图
-                     * @param options {
+                     * @param options
+                     * {
                      *     tplNode,     //当前数据节点对象
                      *     tplTree,     //当前数据树
                      * }
-                     * @return {Array} 视图元数据集合 @link 请参考ViewMeta说明
+                     * @return {Array} 视图元数据集合 @link 请参考ViewMeta说明如下：
+                     * [
+                     * {
+                     *   uititle: '消息内容',
+                     *   uitype: 'message',
+                     *   type: 'error|warning|info|success'
+                     * }
+                     * ]
                      */
                     value: function onDataView(options) {}
 
@@ -6130,6 +6269,60 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }, {
                     key: "onRemoveDataValid",
                     value: function onRemoveDataValid(options) {}
+
+                    /**
+                     *  @desc 当前数据节点下添加子数据节点时的校验
+                     *  @param options:{
+                     *     tplTree, //当前数据树
+                     *     tplNode, //当前移动的节点
+                     *     tplParentNode,//移动前的父节点
+                     *     tplTargetParentNode,//移动后的父节点
+                     *   }
+                     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+                     */
+
+                }, {
+                    key: "onMoveDataValid",
+                    value: function onMoveDataValid(options) {}
+
+                    /**
+                     * 当数据节点被选择时构建拖拽相关的视图
+                     *  @param options:{
+                     *      tplTree,     //当前数据树
+                     *      tplNode,     //当前数据节点对象
+                     *      tplParentNode //当前数据节点父对象
+                     *   }
+                     *
+                     *  @return  [
+                     *      {
+                     *          key:'addTab',               //按钮键值
+                     *          text:'添加页签',             //按钮名称
+                     *          icon:'uidesign uitianjia'   //按钮图标（使用阿里字体图标库iconfont）
+                     *      }
+                     *      ,... //其它扩展按钮
+                     *  ]
+                     */
+
+                }, {
+                    key: "onDataDndView",
+                    value: function onDataDndView(options) {}
+
+                    /**
+                     * 当数据节点触发动作事件时（例如：扩展按钮点击时）
+                     * @param options
+                     * {
+                     *     tplTree,     //当前数据树
+                     *     tplNode,     //当前数据节点对象
+                     *     actionType,  //动作类型
+                     *     actionKey,   //动作标识
+                     *     openApi      //开发的API能力
+                     * }
+                     * @return 无
+                     */
+
+                }, {
+                    key: "onActionHandler",
+                    value: function onActionHandler(options) {}
                 }]);
 
                 return ViewAdapter;
@@ -6139,7 +6332,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 4 */
+        /* 5 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6162,15 +6355,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-            var _PropMeta = __webpack_require__(5);
+            var _PropMeta = __webpack_require__(6);
 
             var _PropMeta2 = _interopRequireDefault(_PropMeta);
 
-            var _PropDataToValue = __webpack_require__(6);
+            var _PropDataToValue = __webpack_require__(7);
 
             var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-            var _PropValueToData = __webpack_require__(7);
+            var _PropValueToData = __webpack_require__(8);
 
             var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -6268,7 +6461,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 5 */
+        /* 6 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6334,7 +6527,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 6 */
+        /* 7 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6375,7 +6568,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 7 */
+        /* 8 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6454,7 +6647,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 8 */
+        /* 9 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6477,7 +6670,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-            var _LogicUtils = __webpack_require__(9);
+            var _LogicUtils = __webpack_require__(10);
 
             var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
@@ -6615,7 +6808,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 9 */
+        /* 10 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6684,7 +6877,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 10 */
+        /* 11 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6824,7 +7017,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 11 */
+        /* 12 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6843,44 +7036,66 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 };
             }();
 
+            var _SuperAdapter2 = __webpack_require__(2);
+
+            var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
+
+            function _interopRequireDefault(obj) {
+                return obj && obj.__esModule ? obj : { default: obj };
+            }
+
             function _classCallCheck(instance, Constructor) {
                 if (!(instance instanceof Constructor)) {
                     throw new TypeError("Cannot call a class as a function");
                 }
             }
 
-            /**
-             * 全局性的逻辑适配器
-             */
-            var GlobalAdapter = function () {
+            function _possibleConstructorReturn(self, call) {
+                if (!self) {
+                    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+                }return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+            }
+
+            function _inherits(subClass, superClass) {
+                if (typeof superClass !== "function" && superClass !== null) {
+                    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+                }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+            } /**
+               * 全局性的逻辑适配器
+               */
+
+            var GlobalAdapter = function (_SuperAdapter) {
+                _inherits(GlobalAdapter, _SuperAdapter);
+
                 function GlobalAdapter() {
                     _classCallCheck(this, GlobalAdapter);
+
+                    return _possibleConstructorReturn(this, (GlobalAdapter.__proto__ || Object.getPrototypeOf(GlobalAdapter)).call(this));
                 }
+                /**
+                 * 构建组件的分组选择菜单列表
+                 * @param options
+                 * @return array 返回数据格式要求如下：
+                 * [
+                 * {
+                 *   uititle:"基础",  //分组名称
+                 *   uiicon: 'tag',  //分组图标
+                 *   children: [//本分组下的组件集合
+                 *     {
+                 *       uitype:'Button',  //组件标识
+                 *       uititle:'按钮',   //组件名称
+                 *       uiicon:'',       //组件图标
+                 *       uidefault:''     //组件缺省配置
+                 *     },
+                 *     ...//本分组下的更多其它组件
+                 *   ]
+                 * },
+                 * ...  //更多其它分组
+                 * ]
+                 */
 
                 _createClass(GlobalAdapter, [{
                     key: "onViewMenus",
-
-                    /**
-                     * 构建组件的分组选择菜单列表
-                     * @param options
-                     * @return array 返回数据格式要求如下：
-                     * [
-                     * {
-                     *   uititle:"基础",  //分组名称
-                     *   uiicon: 'tag',  //分组图标
-                     *   children: [//本分组下的组件集合
-                     *     {
-                     *       uitype:'Button',  //组件标识
-                     *       uititle:'按钮',   //组件名称
-                     *       uiicon:'',       //组件图标
-                     *       uidefault:''     //组件缺省配置
-                     *     },
-                     *     ...//本分组下的更多其它组件
-                     *   ]
-                     * },
-                     * ...  //更多其它分组
-                     * ]
-                     */
                     value: function onViewMenus(options) {}
 
                     /**
@@ -6917,16 +7132,44 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }, {
                     key: "onCreatePage",
                     value: function onCreatePage(options) {}
+
+                    /**
+                     * 页面数据保存时触发的生命周期
+                     * @param options {tplTree}
+                     */
+
+                }, {
+                    key: "onSaveData",
+                    value: function onSaveData(options) {}
+
+                    /**
+                     * 获取当前组件可用的拖拽扩展按钮
+                     * @param options
+                     */
+
+                }, {
+                    key: "onDndButtons",
+                    value: function onDndButtons(options) {
+                        /**
+                         * return [
+                         *      {
+                         *          key:''
+                         *          text:'',
+                         *          icon:''
+                         *      }
+                         * ]
+                         */
+                    }
                 }]);
 
                 return GlobalAdapter;
-            }();
+            }(_SuperAdapter3.default);
 
             exports.default = GlobalAdapter;
 
             /***/
         },
-        /* 12 */
+        /* 13 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6935,19 +7178,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _BaseDataAdapter2 = _interopRequireDefault(_BaseDataAdapter);
 
-            var _BaseViewAdapter = __webpack_require__(2);
+            var _BaseViewAdapter = __webpack_require__(3);
 
             var _BaseViewAdapter2 = _interopRequireDefault(_BaseViewAdapter);
 
-            var _ViewAdapter = __webpack_require__(3);
+            var _ViewAdapter = __webpack_require__(4);
 
             var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-            var _PropAdapter = __webpack_require__(4);
+            var _PropAdapter = __webpack_require__(5);
 
             var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-            var _EventAdapter = __webpack_require__(8);
+            var _EventAdapter = __webpack_require__(9);
 
             var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -6955,23 +7198,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _MetaType2 = _interopRequireDefault(_MetaType);
 
-            var _UiDefines = __webpack_require__(10);
+            var _UiDefines = __webpack_require__(11);
 
             var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-            var _UiLibrary = __webpack_require__(13);
+            var _UiLibrary = __webpack_require__(14);
 
             var _UiLibrary2 = _interopRequireDefault(_UiLibrary);
 
-            var _LogicUtils = __webpack_require__(9);
+            var _LogicUtils = __webpack_require__(10);
 
             var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
-            var _PluginAdapter = __webpack_require__(14);
+            var _PluginAdapter = __webpack_require__(15);
 
             var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
-            var _GlobalAdapter = __webpack_require__(11);
+            var _GlobalAdapter = __webpack_require__(12);
 
             var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -6995,7 +7238,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 13 */
+        /* 14 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7014,23 +7257,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 };
             }();
 
-            var _UiDefines = __webpack_require__(10);
+            var _UiDefines = __webpack_require__(11);
 
             var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-            var _PropAdapter = __webpack_require__(4);
+            var _PropAdapter = __webpack_require__(5);
 
             var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-            var _EventAdapter = __webpack_require__(8);
+            var _EventAdapter = __webpack_require__(9);
 
             var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
-            var _ViewAdapter = __webpack_require__(3);
+            var _ViewAdapter = __webpack_require__(4);
 
             var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-            var _GlobalAdapter = __webpack_require__(11);
+            var _GlobalAdapter = __webpack_require__(12);
 
             var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -7064,17 +7307,39 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     this.viewAdapters = {};
                     this.globalAdapter = null;
                 }
+
                 /**
-                 * 添加一个组件的定义
-                 * @param primaryKey    主键标识
-                 * @param uitype        组件类型
-                 * @param uititle       组件名称
-                 * @param uiicon        组件图标
-                 * @param uidefault     组件缺省属性
-                 * @param uiisview      组件是否为视图
+                 * 获取组件库标识名
+                 * @return {*}
                  */
 
                 _createClass(UiLibrary, [{
+                    key: "getName",
+                    value: function getName() {
+                        return this.libraryName;
+                    }
+
+                    /**
+                     * 获取组件库版本号
+                     * @return {*}
+                     */
+
+                }, {
+                    key: "getVersion",
+                    value: function getVersion() {
+                        return this.libraryVer;
+                    }
+                    /**
+                     * 添加一个组件的定义
+                     * @param primaryKey    主键标识
+                     * @param uitype        组件类型
+                     * @param uititle       组件名称
+                     * @param uiicon        组件图标
+                     * @param uidefault     组件缺省属性
+                     * @param uiisview      组件是否为视图
+                     */
+
+                }, {
                     key: "addDefine",
                     value: function addDefine() {
                         this.uiDefines.add.apply(this.uiDefines, arguments);
@@ -7332,7 +7597,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 14 */
+        /* 15 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7359,15 +7624,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _MetaType2 = _interopRequireDefault(_MetaType);
 
-            var _PropMeta = __webpack_require__(5);
+            var _PropMeta = __webpack_require__(6);
 
             var _PropMeta2 = _interopRequireDefault(_PropMeta);
 
-            var _PropDataToValue = __webpack_require__(6);
+            var _PropDataToValue = __webpack_require__(7);
 
             var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-            var _PropValueToData = __webpack_require__(7);
+            var _PropValueToData = __webpack_require__(8);
 
             var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
