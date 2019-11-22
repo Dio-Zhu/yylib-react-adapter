@@ -22051,6 +22051,7 @@ module.exports = function (options) {
             case "uititle":
                 {
                     _indexDeps.LogicUtils.isExistSet(tplNode, 'uititle', value);
+                    _indexDeps.LogicUtils.isExistSet(tplNode, 'title', value);
                     break;
                 }
             // case "fieldtype":{
