@@ -5901,11 +5901,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             module.exports = {
                 /**
-                 * 下拉选择
-                 * 配合options属性使用
-                 */
-                Select: 'Select',
-                /**
                  * 文本输入
                  */
                 Text: 'Text',
@@ -5918,6 +5913,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  */
                 Number: 'Number',
                 /**
+                 * 下拉选择
+                 */
+                Select: 'Select',
+                /**
                  * 勾选框
                  */
                 Checkbox: 'Checkbox',
@@ -5926,10 +5925,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  */
                 Color: 'Color',
                 /**
-                 * 图标库
-                 */
-                Icon: 'Icon',
-                /**
                  * 选择日期
                  */
                 Date: 'Date',
@@ -5937,14 +5932,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  * 选择时间
                  */
                 Time: 'Time',
-                /**
-                 * 参照
-                 */
-                Refer: 'Refer',
-                /**
-                 * 下拉选择树
-                 */
-                SelectTree: 'SelectTree',
                 /**
                  * 多行文本框
                  */
@@ -5958,70 +5945,81 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                  */
                 RichText: 'RichText',
                 /**
+                 * 带Iframe的弹窗(可自定义弹窗里面的内容,详见扩展插件开发说明.)
+                 */
+                IframeModal: 'IframeModal',
+                /**
                  * CSS的样式配置器
                  */
                 CssStyle: 'CssStyle',
-                /**
-                 * 多表头合并设计器
-                 */
-                TitleGroup: 'TitleGroup',
-                /**
-                 * 动作事件设计器
-                 */
-                EventActions: 'EventActions',
-                /**
-                 * 计算公式设计器
-                 */
-                MathFormula: 'MathFormula',
-                /**
-                 * 逻辑公式设计器
-                 */
-                LogicFormula: 'LogicFormula',
-                /**
-                 * 富文本图标框（仅限配套的富文本框使用）
-                 */
-                EditorIcons: 'EditorIcons',
-                /**
-                 * 分页配置器
-                 */
-                Pagination: 'Pagination',
                 /**
                  * 带开关的文本输入框
                  */
                 SwitchText: 'SwitchText',
                 /**
-                 * 枚举档案选择（仅限配套的枚举档案使用）
+                 * 图标库(非通用)
+                 */
+                Icon: 'Icon',
+                /**
+                 * 参照(非通用)
+                 */
+                Refer: 'Refer',
+                /**
+                 * 下拉选择树(非通用)
+                 */
+                SelectTree: 'SelectTree',
+                /**
+                 * 多表头合并设计器(非通用)
+                 */
+                TitleGroup: 'TitleGroup',
+                /**
+                 * 动作事件设计器(非通用)
+                 */
+                EventActions: 'EventActions',
+                /**
+                 * 计算公式设计器(非通用)
+                 */
+                MathFormula: 'MathFormula',
+                /**
+                 * 逻辑公式设计器(非通用)
+                 */
+                LogicFormula: 'LogicFormula',
+                /**
+                 * 富文本图标框（非通用,仅限配套的YYEditor富文本框使用）
+                 */
+                EditorIcons: 'EditorIcons',
+                /**
+                 * 分页配置器(非通用)
+                 */
+                Pagination: 'Pagination',
+                /**
+                 * 枚举档案选择（非通用,仅限配套的枚举档案使用）
                  */
                 EnumSelect: 'EnumSelect',
                 /**
-                 * 参照映射关联项配置（仅限配套的参照使用）
+                 * 参照映射关联项配置（非通用,仅限配套的参照使用）
                  */
                 ReferEditRelation: 'ReferEditRelation',
                 /**
-                 * 数据表格本地数据配置（仅限配套的表格使用）
+                 * 数据表格本地数据配置（非通用,仅限配套的表格使用）
                  */
                 LocalData: 'LocalData',
                 /**
-                 * 表格行操作菜单（仅限配套的表格使用）
+                 * 表格行操作菜单（非通用,仅限配套的表格使用）
                  */
                 RowMenu: 'RowMenu',
                 /**
-                 * 筛选栏配置（仅限配套的筛选栏配置）
+                 * 筛选栏配置（非通用,仅限配套的筛选栏配置）
                  */
                 FilterAreaConfig: 'FilterAreaConfig',
                 /**
-                 * Echart图表属性配置器
+                 * Echart图表属性配置器(非通用)
                  */
                 EChartData: 'EChartData',
                 /**
-                 * 参照带入配置（仅限配套的iuap参照配置）
+                 * 参照带入配置（非通用,仅限配套的参照配置）
                  */
-                ReferLookup: 'ReferLookup',
-
-                /**
-                 * 带Iframe的弹窗
-                 */
-                IframeModal: 'IframeModal'
+                ReferLookup: 'ReferLookup'
 
             };
 
@@ -7124,14 +7122,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     value: function onUiSubset(options) {}
 
                     /**
-                     * TODO 待处理
-                     * 新建页面时的触发的生命周期
+                     * 构建页面类型的可选列表
+                     * @param options
+                     * {
+                     *     currApp:object //当前应用信息
+                     * }
+                     */
+
+                }, {
+                    key: "onPageTypes",
+                    value: function onPageTypes(options) {}
+                    /**
+                     * 新建页面时的触发的生命周期,主要用于处理缺省的页面节点数据
                      * @param options
                      */
 
                 }, {
-                    key: "onCreatePage",
-                    value: function onCreatePage(options) {}
+                    key: "onDefaultPageData",
+                    value: function onDefaultPageData(options) {}
 
                     /**
                      * 页面数据保存时触发的生命周期
@@ -7940,6 +7948,35 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
             subset[_Defines.UiTypeDef.CPCardPage] = _UiSubUtils2.default.include(_Defines.UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
             subset[_Defines.UiTypeDef.CPCardHeader] = _UiSubUtils2.default.include(_Defines.UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
             return tplNode ? subset[tplNode.uitype] : null;
+        }
+    }, {
+        key: 'onPageTypes',
+        value: function onPageTypes(options) {
+            var pageTypes = [{
+                name: '自定义页面',
+                code: 'YYPage',
+                isDefault: true
+            }, {
+                name: '建造列表页面',
+                code: 'CPListPage'
+            }, {
+                name: '建造卡片页面',
+                code: 'CPCardPage'
+            }];
+            return pageTypes;
+        }
+    }, {
+        key: 'onDefaultPageData',
+        value: function onDefaultPageData(options) {
+            var currApp = options.currApp,
+                currPage = options.currPage;
+
+            var pageNode = {
+                uikey: currPage.code //页面编码
+                , uititle: currPage.name //页面名称
+                , uitype: currPage.pageType || 'YYPage' //默认值：YYPage
+            };
+            return pageNode;
         }
     }]);
 

@@ -177,4 +177,30 @@ export default class MyGlobalAdapter extends GlobalAdapter{
         subset[UiTypeDef.CPCardHeader] = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
         return tplNode?subset[tplNode.uitype]:null;
     }
+
+    onPageTypes(options){
+        let pageTypes = [
+            {
+                name: '自定义页面',
+                code: 'YYPage',
+                isDefault:true
+            }, {
+                name: '建造列表页面',
+                code: 'CPListPage',
+            }, {
+                name: '建造卡片页面',
+                code: 'CPCardPage',
+            }
+        ]
+        return pageTypes;
+    }
+    onDefaultPageData(options){
+        let {currApp,currPage} = options;
+        let pageNode = {
+            uikey:currPage.code//页面编码
+            ,uititle:currPage.name//页面名称
+            ,uitype:currPage.pageType||'YYPage'//默认值：YYPage
+        };
+        return pageNode;
+    }
 }
