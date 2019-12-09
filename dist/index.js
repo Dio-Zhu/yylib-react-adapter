@@ -70,7 +70,7 @@ registerLibrary(/******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
-var _zzjGenadapter = __webpack_require__(73);
+var _ideSdkAdapter = __webpack_require__(73);
 
 window.EnvConfig = window.EnvConfig || {}; /**
                                             * 统一对外部的依赖入口（所有第三方依赖）
@@ -79,13 +79,13 @@ window.EnvConfig = window.EnvConfig || {}; /**
 var SUPPORT_SERVER = window.EnvConfig.SUPPORT_SERVER_URL;
 
 module.exports = {
-    UiLibrary: _zzjGenadapter.UiLibrary,
-    ViewAdapter: _zzjGenadapter.ViewAdapter,
-    PropAdapter: _zzjGenadapter.PropAdapter,
-    EventAdapter: _zzjGenadapter.EventAdapter,
-    GlobalAdapter: _zzjGenadapter.GlobalAdapter,
-    MetaType: _zzjGenadapter.MetaType,
-    LogicUtils: _zzjGenadapter.LogicUtils,
+    UiLibrary: _ideSdkAdapter.UiLibrary,
+    ViewAdapter: _ideSdkAdapter.ViewAdapter,
+    PropAdapter: _ideSdkAdapter.PropAdapter,
+    EventAdapter: _ideSdkAdapter.EventAdapter,
+    GlobalAdapter: _ideSdkAdapter.GlobalAdapter,
+    MetaType: _ideSdkAdapter.MetaType,
+    LogicUtils: _ideSdkAdapter.LogicUtils,
     SUPPORT_SERVER: SUPPORT_SERVER
 };
 
@@ -5627,7 +5627,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     if (( false ? 'undefined' : _typeof(exports)) === 'object' && ( false ? 'undefined' : _typeof(module)) === 'object') module.exports = factory();else if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') exports["GenAdapter"] = factory();else root["GenAdapter"] = factory();
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') exports["IdeSdkAdapter"] = factory();else root["IdeSdkAdapter"] = factory();
 })(typeof self !== 'undefined' ? self : undefined, function () {
     return (/******/function (modules) {
             // webpackBootstrap
@@ -5703,7 +5703,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             /******/__webpack_require__.p = "";
             /******/
             /******/ // Load entry module and return exports
-            /******/return __webpack_require__(__webpack_require__.s = 13);
+            /******/return __webpack_require__(__webpack_require__.s = 12);
             /******/
         }(
         /************************************************************************/
@@ -5786,33 +5786,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     }
 
                     //--------------生命周期方法--------------------
-                    /**
-                     * @desc 构建适配页面(元数据)
-                     * @param options
-                     * {
-                     *     tplNode,     //当前数据节点值
-                     *     tplTree,     //当前数据树
-                     *     productType, //所属产品类型
-                     *     currApp,     //所属应用信息
-                     *     currPage,    //所属页面信息
-                     *     pageList     //所属应用下的全部页面信息
-                     * }
-                     * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
-                     */
-
-                }, {
-                    key: "onPageMetas",
-                    value: function onPageMetas(options) {}
-
-                    /**
-                     * @desc 构建适配页面(属性)
-                     * @param options {无}
-                     * @return {object} 适配页面的属性 @link 请参考PageProp说明
-                     */
-
-                }, {
-                    key: "onPageProps",
-                    value: function onPageProps(options) {}
 
                     /**
                      *  @desc 新建数据节点时触发
@@ -6050,6 +6023,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 }
             }
 
+            /**
+             * 所有适配器类均需要继承此超类
+             */
             var SuperAdapter = function () {
                 function SuperAdapter() {
                     _classCallCheck(this, SuperAdapter);
@@ -6353,15 +6329,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-            var _PropMeta = __webpack_require__(6);
-
-            var _PropMeta2 = _interopRequireDefault(_PropMeta);
-
-            var _PropDataToValue = __webpack_require__(7);
+            var _PropDataToValue = __webpack_require__(6);
 
             var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-            var _PropValueToData = __webpack_require__(8);
+            var _PropValueToData = __webpack_require__(7);
 
             var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -6404,16 +6376,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
                     //--------------生命周期方法--------------------
                     /**
-                     * @desc 参考 BaseDataAdapter
+                     * @desc 构建适配页面(元数据)
                      * @param options
+                     * {
+                     *     tplNode,     //当前数据节点值
+                     *     tplTree,     //当前数据树
+                     *     productType, //所属产品类型
+                     *     currApp,     //所属应用信息
+                     *     currPage,    //所属页面信息
+                     *     pageList     //所属应用下的全部页面信息
+                     * }
+                     * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
                      */
-                    value: function onPageMetas(options) {
-                        return (0, _PropMeta2.default)(options);
-                    }
+                    value: function onPageMetas(options) {}
 
                     /**
-                     * @desc 参考 BaseDataAdapter
-                     * @param options
+                     * @desc 构建适配页面(属性)
+                     * @param options {无}
+                     * @return {object} 适配页面的属性 @link 请参考PageProp说明
                      */
 
                 }, {
@@ -6421,15 +6401,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     value: function onPageProps(options) {}
 
                     /**
-                     * @desc 参考 BaseDataAdapter
-                     * @param options
-                     */
-
-                }, {
-                    key: 'onCreateData',
-                    value: function onCreateData(options) {}
-
-                    /**
+                     * @override
                      * @desc 参考 BaseDataAdapter
                      * @param options
                      */
@@ -6441,6 +6413,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     }
 
                     /**
+                     * @override
                      * @desc 参考 BaseDataAdapter
                      * @param options
                      */
@@ -6460,72 +6433,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             /***/
         },
         /* 6 */
-        /***/function (module, exports, __webpack_require__) {
-
-            "use strict";
-
-            /**
-             * 基础的通用属性定义
-             */
-
-            var MetaType = __webpack_require__(1);
-            window.EnvConfig = window.EnvConfig || {};
-            var SUPPORT_SERVER = window.EnvConfig.SUPPORT_SERVER_URL;
-            var PRODUCT_TYPE_PAGE_SIMPLE = 2;
-            module.exports = function (options) {
-                var productType = options.productType,
-                    tplNode = options.tplNode,
-                    currPage = options.currPage;
-
-                var PropMeta = [{
-                    name: 'uikey',
-                    label: '键值',
-                    type: MetaType.Text,
-                    props: {},
-                    readOnly: !!(productType == PRODUCT_TYPE_PAGE_SIMPLE && currPage && currPage.isDevelopment !== 1),
-                    defaultValue: ''
-                }, {
-                    name: 'uititle',
-                    label: '名称',
-                    type: MetaType.Text,
-                    props: {},
-                    defaultValue: ''
-                }];
-                if (tplNode && tplNode.MetaType == "YYPage") {
-                    PropMeta.push({
-                        name: 'themeClassName',
-                        label: '页面风格',
-                        help: '主题样式皮肤风格名称',
-                        type: MetaType.Select,
-                        props: {
-                            options: [{ text: '平台默认', value: '' }, { text: '公有云风格', value: 'GYY' }]
-                        },
-                        defaultValue: ''
-                    });
-                }
-                PropMeta = PropMeta.concat([{
-                    name: 'className',
-                    label: '定制样式',
-                    help: '自定义样式规则的名称，即：css的class名称',
-                    type: MetaType.Text,
-                    props: {},
-                    defaultValue: ''
-                }, {
-                    name: 'specialTag',
-                    label: '特殊标识',
-                    type: MetaType.Refer,
-                    props: {
-                        refinfokey: 'defdoc-component_props',
-                        serverUrl: SUPPORT_SERVER
-                    },
-                    defaultValue: null
-                }]);
-                return PropMeta;
-            };
-
-            /***/
-        },
-        /* 7 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6566,7 +6473,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 8 */
+        /* 7 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6645,7 +6552,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 9 */
+        /* 8 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6668,7 +6575,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-            var _LogicUtils = __webpack_require__(10);
+            var _LogicUtils = __webpack_require__(9);
 
             var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
@@ -6806,7 +6713,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 10 */
+        /* 9 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -6875,7 +6782,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 11 */
+        /* 10 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7015,7 +6922,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 12 */
+        /* 11 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7177,7 +7084,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 13 */
+        /* 12 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7198,7 +7105,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-            var _EventAdapter = __webpack_require__(9);
+            var _EventAdapter = __webpack_require__(8);
 
             var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -7206,23 +7113,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _MetaType2 = _interopRequireDefault(_MetaType);
 
-            var _UiDefines = __webpack_require__(11);
+            var _UiDefines = __webpack_require__(10);
 
             var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-            var _UiLibrary = __webpack_require__(14);
+            var _UiLibrary = __webpack_require__(13);
 
             var _UiLibrary2 = _interopRequireDefault(_UiLibrary);
 
-            var _LogicUtils = __webpack_require__(10);
+            var _LogicUtils = __webpack_require__(9);
 
             var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
-            var _PluginAdapter = __webpack_require__(15);
+            var _PluginAdapter = __webpack_require__(14);
 
             var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
-            var _GlobalAdapter = __webpack_require__(12);
+            var _GlobalAdapter = __webpack_require__(11);
 
             var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -7246,7 +7153,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 14 */
+        /* 13 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7265,7 +7172,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 };
             }();
 
-            var _UiDefines = __webpack_require__(11);
+            var _UiDefines = __webpack_require__(10);
 
             var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
@@ -7273,7 +7180,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-            var _EventAdapter = __webpack_require__(9);
+            var _EventAdapter = __webpack_require__(8);
 
             var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -7281,7 +7188,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-            var _GlobalAdapter = __webpack_require__(12);
+            var _GlobalAdapter = __webpack_require__(11);
 
             var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -7605,7 +7512,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             /***/
         },
-        /* 15 */
+        /* 14 */
         /***/function (module, exports, __webpack_require__) {
 
             "use strict";
@@ -7632,15 +7539,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _MetaType2 = _interopRequireDefault(_MetaType);
 
-            var _PropMeta = __webpack_require__(6);
+            var _PropMeta = __webpack_require__(15);
 
             var _PropMeta2 = _interopRequireDefault(_PropMeta);
 
-            var _PropDataToValue = __webpack_require__(7);
+            var _PropDataToValue = __webpack_require__(6);
 
             var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-            var _PropValueToData = __webpack_require__(8);
+            var _PropValueToData = __webpack_require__(7);
 
             var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -7716,6 +7623,72 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }(_BaseDataAdapter3.default);
 
             exports.default = PluginAdapter;
+
+            /***/
+        },
+        /* 15 */
+        /***/function (module, exports, __webpack_require__) {
+
+            "use strict";
+
+            /**
+             * 基础的通用属性定义
+             */
+
+            var MetaType = __webpack_require__(1);
+            window.EnvConfig = window.EnvConfig || {};
+            var SUPPORT_SERVER = window.EnvConfig.SUPPORT_SERVER_URL;
+            var PRODUCT_TYPE_PAGE_SIMPLE = 2;
+            module.exports = function (options) {
+                var productType = options.productType,
+                    tplNode = options.tplNode,
+                    currPage = options.currPage;
+
+                var PropMeta = [{
+                    name: 'uikey',
+                    label: '键值',
+                    type: MetaType.Text,
+                    props: {},
+                    readOnly: !!(productType == PRODUCT_TYPE_PAGE_SIMPLE && currPage && currPage.isDevelopment !== 1),
+                    defaultValue: ''
+                }, {
+                    name: 'uititle',
+                    label: '名称',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                }];
+                if (tplNode && tplNode.MetaType == "YYPage") {
+                    PropMeta.push({
+                        name: 'themeClassName',
+                        label: '页面风格',
+                        help: '主题样式皮肤风格名称',
+                        type: MetaType.Select,
+                        props: {
+                            options: [{ text: '平台默认', value: '' }, { text: '公有云风格', value: 'GYY' }]
+                        },
+                        defaultValue: ''
+                    });
+                }
+                PropMeta = PropMeta.concat([{
+                    name: 'className',
+                    label: '定制样式',
+                    help: '自定义样式规则的名称，即：css的class名称',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                }, {
+                    name: 'specialTag',
+                    label: '特殊标识',
+                    type: MetaType.Refer,
+                    props: {
+                        refinfokey: 'defdoc-component_props',
+                        serverUrl: SUPPORT_SERVER
+                    },
+                    defaultValue: null
+                }]);
+                return PropMeta;
+            };
 
             /***/
         }]
