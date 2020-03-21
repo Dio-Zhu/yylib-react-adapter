@@ -1,16 +1,16 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import ButtonReferMeta from '../../settings/forminputs/buttonrefer/ButtonReferMeta';
 import ButtonReferToValues from '../../settings/forminputs/buttonrefer/ButtonReferToValues';
 import ButtonReferValues from '../../settings/forminputs/buttonrefer/ButtonReferValues';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class ButtonReferAdapter extends PropAdapter{
+export default class ButtonReferAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = ButtonReferMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

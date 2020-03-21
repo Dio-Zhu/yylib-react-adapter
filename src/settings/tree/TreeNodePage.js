@@ -1,5 +1,5 @@
 import Utils from '../../Utils';
-import {UiTypeDef} from '../../Defines';
+import {UiTypeDef} from '../../MyUiDefines';
 
 module.exports = function (options) {
     return {

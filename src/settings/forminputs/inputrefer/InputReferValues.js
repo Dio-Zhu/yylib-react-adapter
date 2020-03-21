@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 module.exports = function(options){
     var {formMeta,tplNode,tplTree} = options;
     var newFormData = {};
@@ -14,7 +14,7 @@ module.exports = function(options){
     //     tplNode.uitype == UiTypeDef.edititemw||
     //     isSearchItem) {
         //参照扩展的配置项
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             switch (meta.name) {
                 case "refinfokey": {

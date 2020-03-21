@@ -24,7 +24,7 @@ function clearOtherProps(tplNode){
 module.exports = function(options){
     var {formMeta,formData,tplNode,tplTree} = options;
     var oldUiSubType = tplNode.uisubtype;
-    for(var i=0;i<formMeta.length;i++) {
+    for(var i=0;i<(formMeta||[]).length;i++) {
         var meta = formMeta[i];
         //保证formMeta数据值和表单数据值一致
         if(!(meta.name in formData))continue;

@@ -1,6 +1,6 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import OptionToValues from '../../settings/forminputs/select/OptionToValues';
-export default class OptionAdapter extends PropAdapter{
+export default class OptionAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

@@ -4,7 +4,7 @@ module.exports = function(options){
     var rootSystem=rootDataprops.system;
     var rootEntity=rootDataprops.entity;
     var newFormData = {};//处理公共属性
-    for(var i=0;i<formMeta.length;i++){
+    for(var i=0;i<(formMeta||[]).length;i++){
         var meta = formMeta[i];
         switch(meta.name){
             // case "checkable":{

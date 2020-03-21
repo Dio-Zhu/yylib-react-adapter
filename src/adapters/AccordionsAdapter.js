@@ -1,6 +1,6 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import AccordionsPage from '../settings/accordions/AccordionsPage';
-export default class AccordionsAdapter extends PropAdapter{
+export default class AccordionsAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

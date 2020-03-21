@@ -1,12 +1,12 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import ScrollbarMeta from '../settings/scrollbar/ScrollbarMeta';
-export default class ScrollbarAdapter extends PropAdapter{
+export default class ScrollbarAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(ScrollbarMeta(options));
+        return (baseMetas||[]).concat(ScrollbarMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

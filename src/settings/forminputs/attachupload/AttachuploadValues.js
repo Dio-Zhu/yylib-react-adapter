@@ -10,7 +10,7 @@ module.exports = function(options){
     //     ||tplNode.uitype == UiTypeDef.formitemw//表单项
     //     ||tplNode.uitype == UiTypeDef.edititemw//编辑项
     // ){
-        for(var i=0;i<formMeta.length;i++){
+        for(var i=0;i<(formMeta||[]).length;i++){
             var meta = formMeta[i];
             switch (meta.name) {
                 // case "action":{

@@ -1,8 +1,8 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import PageMeta from '../settings/page/PageMeta';
 import PageToValues from '../settings/page/PageToValues';
 import PageValues from '../settings/page/PageValues';
-export default class PageAdapter extends PropAdapter{
+export default class PageAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据

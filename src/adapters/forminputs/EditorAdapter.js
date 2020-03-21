@@ -1,15 +1,15 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import EditorMeta from '../../settings/forminputs/editor/EditorMeta';
 import EditorToValues from '../../settings/forminputs/editor/EditorToValues';
 import EditorValues from '../../settings/forminputs/editor/EditorValues';
-export default class EditorAdapter extends PropAdapter{
+export default class EditorAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = EditorMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

@@ -8,7 +8,7 @@ module.exports = function(options){
     // // 自定义档案枚举选择配置
     // if(tplNode.uitype == UiTypeDef.checkboxgroup||
     //     ((tplNode.uitype == UiTypeDef.formitemw||tplNode.uitype == UiTypeDef.edititemw)&& tplNode.uisubtype==FormItemType.checkboxgroup)) {
-    //     for(var i=0;i<formMeta.length;i++) {
+    //     for(var i=0;i<(formMeta||[]).length;i++) {
     //         var meta = formMeta[i];
     //         if(!(meta.name in formData))continue;
     //         var value = formData[meta.name];

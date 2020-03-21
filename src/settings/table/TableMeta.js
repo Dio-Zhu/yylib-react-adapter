@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../Defines';
+import {UiTypeDef} from '../../MyUiDefines';
 import {MetaType,SUPPORT_SERVER} from '../../index-deps';
 
 module.exports = function(options) {

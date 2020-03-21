@@ -1,13 +1,13 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import TabsMeta from '../settings/tabs/TabsMeta';
 import TabsPage from '../settings/tabs/TabsPage';
-export default class TabsAdapter extends PropAdapter{
+export default class TabsAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(TabsMeta(options));
+        return (baseMetas||[]).concat(TabsMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

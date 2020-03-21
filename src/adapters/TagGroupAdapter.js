@@ -1,7 +1,7 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import TagGroupPage from '../settings/taggroup/TagGroupPage';
 import TagGroupToValues from '../settings/taggroup/TagGroupToValues';
-export default class TagGroupAdapter extends PropAdapter{
+export default class TagGroupAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

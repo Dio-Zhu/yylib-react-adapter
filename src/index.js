@@ -1,5 +1,5 @@
 import {UiLibrary, EventAdapter} from './index-deps';
-import Defines from './Defines';
+import {UiTypeDef, UiObjects} from './MyUiDefines';
 import MyGlobalAdapter from './MyGlobalAdapter';
 import AccordionsAdapter from './adapters/AccordionsAdapter';
 import AccordionAdapter from './adapters/AccordionAdapter';
@@ -82,16 +82,12 @@ import FormItemwViewAdapter from "./viewadapters/FormItemwViewAdapter";
 import TableColViewAdapter from "./viewadapters/TableColViewAdapter";
 import SplitPaneViewAdapter from "./viewadapters/SplitPaneViewAdapter";
 
-const {UiTypeDef, UiObjects} = Defines;
+
 
 const myLibrary = new UiLibrary('yylib-react');
 
-//----------------注册组件定义------------------
-for (let key in UiObjects) {
-    let obj = UiObjects[key];
-    myLibrary.addDefine(key, obj.uitype, obj.uititle, obj.uiicon, obj.uidefault);
-}
-//----------------注册组件定义------------------end
+//----------------组件定义集合注册------------------
+myLibrary.setUiDefines(UiObjects);
 
 myLibrary.setGlobalAdapter(MyGlobalAdapter);
 

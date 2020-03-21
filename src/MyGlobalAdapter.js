@@ -1,4 +1,4 @@
-import {UiObjects,UiTypeDef} from './Defines';
+import {UiObjects,UiTypeDef} from './MyUiDefines';
 import {GlobalAdapter} from './index-deps';
 import UiSubUtils from './UiSubUtils';
 /**
@@ -28,65 +28,164 @@ function generateSubItems(uiObjects,keys){
 }
 export default class MyGlobalAdapter extends GlobalAdapter{
     //--------------生命周期方法--------------------
-    //
+    //工具箱菜单
     onViewMenus(options){
-
         let menus = [
             {
                 uititle:"平台-常规",
                 uiicon: 'tag',
-                children: generateSubItems(UiObjects,['button','buttonselect','buttonrefer','breadcrumb','tree','caption'])
+                children: [
+                    UiTypeDef.button,
+                    UiTypeDef.buttonselect,
+                    UiTypeDef.buttonrefer,
+                    UiTypeDef.breadcrumb,
+                    UiTypeDef.tree,
+                    UiTypeDef.caption
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
                 uititle:"平台-布局",
                 uiicon: 'tag',
-                children: generateSubItems(UiObjects,['accordions','tabs','row','splitpane','panel','modal','area','scrollbar','toolbar','divide'])
+                children: [
+                    UiTypeDef.accordions,
+                    UiTypeDef.tabs,
+                    UiTypeDef.row,
+                    UiTypeDef.splitpane,
+                    UiTypeDef.panel,
+                    UiTypeDef.modal,
+                    UiTypeDef.area,
+                    UiTypeDef.scrollbar,
+                    UiTypeDef.toolbar,
+                    UiTypeDef.divide
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
                 uititle:"平台-表格",
                 uiicon: 'tag',
-                children:generateSubItems(UiObjects,['table','tablew','edittablew'])
+                children: [
+                    UiTypeDef.table,
+                    UiTypeDef.tablew,
+                    UiTypeDef.edittablew
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
                 uititle:"平台-表单",
                 uiicon: 'tag',
-                children:generateSubItems(UiObjects,['formw','input','select','datepicker','timepicker','rangepicker','inputnumber','currency','inputrefer','switch','textarea','taggroup',
-                    'enumselect','inputbutton','cascader','attachupload','imageupload','radiogroup','checkboxgroup','inputmap','editor','attachmgrw','text','autoselect'])
+                children: [
+                    UiTypeDef.formw,
+                    UiTypeDef.input,
+                    UiTypeDef.select,
+                    UiTypeDef.datepicker,
+                    UiTypeDef.timepicker,
+                    UiTypeDef.rangepicker,
+                    UiTypeDef.inputnumber,
+                    UiTypeDef.currency,
+                    UiTypeDef.inputrefer,
+                    UiTypeDef.switch,
+                    UiTypeDef.textarea,
+                    UiTypeDef.taggroup,
+                    UiTypeDef.enumselect,
+                    UiTypeDef.inputbutton,
+                    UiTypeDef.cascader,
+                    UiTypeDef.attachupload,
+                    UiTypeDef.imageupload,
+                    UiTypeDef.radiogroup,
+                    UiTypeDef.checkboxgroup,
+                    UiTypeDef.inputmap,
+                    UiTypeDef.editor,
+                    UiTypeDef.attachmgrw,
+                    UiTypeDef.text,
+                    UiTypeDef.autoselect,
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
                 uititle:"平台-业务",
                 uiicon: 'tag',
-                children:generateSubItems(UiObjects,['searchcondition','searchscheme','bpmsubmitw','bpmapprovew','attachmgrw','printbutton'])
+                children: [
+                    UiTypeDef.searchcondition,
+                    UiTypeDef.searchscheme,
+                    UiTypeDef.bpmsubmitw,
+                    UiTypeDef.bpmapprovew,
+                    UiTypeDef.attachmgrw,
+                    UiTypeDef.printbutton
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
                 uititle:"平台-特殊",
                 uiicon: 'tag',
-                children: generateSubItems(UiObjects,['chartw','filterarea','steps','stepsnav','iframe'])
-            },
-
-            {
-                uititle: "建造-列表",
-                uiicon: 'tag',
-                children: generateSubItems(UiObjects,['CPListHeader', 'CPListToolbar', 'CPListTable'])
-            },
-            {
-                uititle: "建造-卡片",
-                uiicon: 'tag',
-                children: generateSubItems(UiObjects,['CPCardHeader', 'CPCardTitle', 'CPCardBody'])
+                children: [
+                    UiTypeDef.chartw,
+                    UiTypeDef.filterarea,
+                    UiTypeDef.steps,
+                    UiTypeDef.stepsnav,
+                    UiTypeDef.iframe
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
-                uititle: "建造-定制",
+                uititle:"建造-列表",
                 uiicon: 'tag',
-                children: generateSubItems(UiObjects,['CPPluginMgr','CPGoBack','CPSearchBar','CPIconButton', 'CPDropdownButton'
-                    ,'CPAttachMgr','CPBpmSubmit','CPBpmApprove','CPPrintButton','CPAuditInfo','CPFilterBar'])
+                children: [
+                    UiTypeDef.CPListHeader,
+                    UiTypeDef.CPListToolbar,
+                    UiTypeDef.CPListTable
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             },
             {
-                uititle: "建造-产品",
+                uititle:"建造-卡片",
                 uiicon: 'tag',
-                children: generateSubItems(UiObjects,['IjzHeader', 'IjzFilter', 'IjzListView'])
+                children: [
+                    UiTypeDef.CPCardHeader,
+                    UiTypeDef.CPCardTitle,
+                    UiTypeDef.CPCardBody
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
+            },
+            {
+                uititle:"建造-定制",
+                uiicon: 'tag',
+                children: [
+                    UiTypeDef.CPPluginMgr,
+                    UiTypeDef.CPGoBack,
+                    UiTypeDef.CPSearchBar,
+                    UiTypeDef.CPIconButton,
+                    UiTypeDef.CPDropdownButton,
+                    UiTypeDef.CPAttachMgr,
+                    UiTypeDef.CPBpmSubmit,
+                    UiTypeDef.CPBpmApprove,
+                    UiTypeDef.CPPrintButton,
+                    UiTypeDef.CPAuditInfo,
+                    UiTypeDef.CPFilterBar
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
+            },
+            {
+                uititle:"建造-产品",
+                uiicon: 'tag',
+                children: [
+                    UiTypeDef.IjzHeader,
+                    UiTypeDef.IjzFilter,
+                    UiTypeDef.IjzListView
+                ].map((uitype)=>{
+                    return UiObjects.getByUiType(uitype);
+                })
             }
-
-        ]
+        ];
         return menus;
     }
 
@@ -99,83 +198,151 @@ export default class MyGlobalAdapter extends GlobalAdapter{
         // 只有唯一父级的子级
         let uniqueParentItems = ['option', 'tablecol', 'buttonitem', 'accordion', 'tab', 'tagitem', 'breadcrumbitem', 'edititemw',
             'col', 'searchitem', 'treenode', 'stepsnavitem', 'radio', 'checkbox', 'step'];
-        let subset = {};
-        subset[UiTypeDef.page] = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
-            , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
-            , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
-        subset[UiTypeDef.toolbar] = UiSubUtils.include(UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency'
-            , 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer'
-            , 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
-        subset[UiTypeDef.area] = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
-            , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
-            , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr']);
-        subset[UiTypeDef.table] = [UiTypeDef.tablecol];
-        subset[UiTypeDef.button] = [];
-        subset[UiTypeDef.buttonrefer] = [];
-        subset[UiTypeDef.caption] = [];
-        subset[UiTypeDef.buttonselect] = [UiTypeDef.buttonitem];
-        subset[UiTypeDef.accordions] = [UiTypeDef.accordion];
-        subset[UiTypeDef.accordion] = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
-        subset[UiTypeDef.modal] = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
-            , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
-            , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
-        subset[UiTypeDef.tabs] = [UiTypeDef.tab];
-        subset[UiTypeDef.tab] = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
-        subset[UiTypeDef.formw] = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'enumselect', 'inputrefer', 'textarea', 'datepicker', 'timepicker', 'rangepicker', 'input', 'select',
-            'inputnumber', 'currency', 'referinput', 'switch', 'searchcondition', 'cascader', 'formitemw', 'inputbutton',
-            'attachupload', 'imageupload', 'radiogroup', 'checkboxgroup', 'inputmap', 'editor', 'attachmgrw', 'autoselect', 'text']);
-        subset[UiTypeDef.input] = [];
-        subset[UiTypeDef.datepicker] = [];
-        subset[UiTypeDef.inputnumber] = [];
-        subset[UiTypeDef.inputrefer] = [];
-        subset[UiTypeDef.switch] = [];
-        subset[UiTypeDef.breadcrumb] = [UiTypeDef.breadcrumbitem];
-        subset[UiTypeDef.edittablew] = [UiTypeDef.edititemw];
-        subset[UiTypeDef.row] = [UiTypeDef.col];
-        subset[UiTypeDef.col] = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
-        subset[UiTypeDef.panel] = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
-        subset[UiTypeDef.searchcondition] = [UiTypeDef.searchitem];
-        subset[UiTypeDef.tree] = [UiTypeDef.treenode];
-        subset[UiTypeDef.divide] = [];
-        subset[UiTypeDef.stepsnav] = [UiTypeDef.stepsnavitem];
-        subset[UiTypeDef.scrollbar] = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
-        subset[UiTypeDef.attachmgrw] = [];
-        subset[UiTypeDef.steps] = [UiTypeDef.step];
-        subset[UiTypeDef.tablew] = [UiTypeDef.tablecol];
-        subset[UiTypeDef.splitpane] = UiSubUtils.include(UiTypeDef, ['formw', 'accordions', 'tabs', 'row', 'panel', 'area', 'scrollbar', 'toolbar', 'splitpane', 'table', 'tablew', 'edittablew', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'tree']);
-        subset[UiTypeDef.attachupload] = [];
-        subset[UiTypeDef.buttonitem] = [];
-        subset[UiTypeDef.imageupload] = [];
-        subset[UiTypeDef.radio] = [UiTypeDef.radiogroup];
-        subset[UiTypeDef.radiogroup] = [];
-        subset[UiTypeDef.checkboxgroup] = [UiTypeDef.checkbox];
-        subset[UiTypeDef.checkbox] = [];
-        subset[UiTypeDef.inputmap] = [];
-        subset[UiTypeDef.editor] = [];
-        subset[UiTypeDef.autoselect] = [];
-        subset[UiTypeDef.searchscheme] = [];
-        subset[UiTypeDef.CPBpmSubmit] = [];
-        subset[UiTypeDef.bpmapprovew] = [];
-        subset[UiTypeDef.printbutton] = [];
-        subset[UiTypeDef.text] = [];
-        subset[UiTypeDef.textarea] = [];
-        subset[UiTypeDef.taggroup] = [UiTypeDef.tagitem];
-        subset[UiTypeDef.enumselect] = [];
-        subset[UiTypeDef.inputbutton] = [];
-        subset[UiTypeDef.cascader] = [];
-        subset[UiTypeDef.timepicker] = [];
-        subset[UiTypeDef.rangepicker] = [];
-        subset[UiTypeDef.select] = [UiTypeDef.option];
-        subset[UiTypeDef.option] = [];
-        subset[UiTypeDef.tablecol] = [];
-        //----------建造模板------------
-        subset[UiTypeDef.CPListPage] = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'breadcrumb', 'steps', 'row', 'splitpane', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'filterarea', 'chartw', 'CPListHeader', 'CPListToolbar', 'CPListTable', 'CPPluginMgr', 'CPFilterBar']);
-        subset[UiTypeDef.CPListHeader] = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'CPGoBack', 'CPSearchBar', 'searchscheme', 'CPIconButton']);
-        subset[UiTypeDef.CPListToolbar] = subset[UiTypeDef.toolbar];
-
-        subset[UiTypeDef.CPCardPage] = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
-        subset[UiTypeDef.CPCardHeader] = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
-        return tplNode?subset[tplNode.uitype]:null;
+        let uiSubSet = [];
+        switch (tplNode && tplNode.uitype) {
+            case UiTypeDef.page:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
+                , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
+                , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
+                break;
+            case UiTypeDef.toolbar:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency'
+                    , 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer'
+                    , 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                break;
+            case UiTypeDef.area:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
+                    , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
+                    , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr']);
+                break;
+            case UiTypeDef.table:
+                uiSubSet = [UiTypeDef.tablecol];
+                break;
+            case UiTypeDef.buttonselect:
+                uiSubSet = [UiTypeDef.buttonitem];
+                break;
+            case UiTypeDef.accordions:
+                uiSubSet = [UiTypeDef.accordion];
+                break;
+            case UiTypeDef.accordion:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
+                break;
+            case UiTypeDef.modal:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
+                    , 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr'
+                    , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
+                break;
+            case UiTypeDef.tabs:
+                uiSubSet = [UiTypeDef.tab];
+                break;
+            case UiTypeDef.tab:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
+                break;
+            case UiTypeDef.formw:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'enumselect', 'inputrefer', 'textarea', 'datepicker', 'timepicker', 'rangepicker', 'input', 'select',
+                    'inputnumber', 'currency', 'referinput', 'switch', 'searchcondition', 'cascader', 'formitemw', 'inputbutton',
+                    'attachupload', 'imageupload', 'radiogroup', 'checkboxgroup', 'inputmap', 'editor', 'attachmgrw', 'autoselect', 'text']);
+                break;
+            case UiTypeDef.breadcrumb:
+                uiSubSet = [UiTypeDef.breadcrumbitem];
+                break;
+            case UiTypeDef.edittablew:
+                uiSubSet = [UiTypeDef.edititemw];
+                break;
+            case UiTypeDef.row:
+                uiSubSet = [UiTypeDef.col];
+                break;
+            case UiTypeDef.col:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
+                break;
+            case UiTypeDef.panel:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
+                break;
+            case UiTypeDef.searchcondition:
+                uiSubSet = [UiTypeDef.searchitem];
+                break;
+            case UiTypeDef.tree:
+                uiSubSet = [UiTypeDef.treenode];
+                break;
+            case UiTypeDef.stepsnav:
+                uiSubSet = [UiTypeDef.stepsnavitem];
+                break;
+            case UiTypeDef.scrollbar:
+                uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
+                break;
+            case UiTypeDef.steps:
+                uiSubSet = [UiTypeDef.step];
+                break;
+            case UiTypeDef.tablew:
+                uiSubSet = [UiTypeDef.tablecol];
+                break;
+            case UiTypeDef.splitpane:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['formw', 'accordions', 'tabs', 'row', 'panel', 'area', 'scrollbar', 'toolbar', 'splitpane', 'table', 'tablew', 'edittablew', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'tree']);
+                break;
+            case UiTypeDef.radio:
+                uiSubSet = [UiTypeDef.radiogroup];
+                break;
+            case UiTypeDef.checkboxgroup:
+                uiSubSet = [UiTypeDef.checkbox];
+                break;
+            case UiTypeDef.taggroup:
+                uiSubSet = [UiTypeDef.tagitem];
+                break;
+            case UiTypeDef.select:
+                uiSubSet = [UiTypeDef.option];
+                break;
+                //----------建造模板------------
+            case UiTypeDef.CPListPage:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'breadcrumb', 'steps', 'row', 'splitpane', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'filterarea', 'chartw', 'CPListHeader', 'CPListToolbar', 'CPListTable', 'CPPluginMgr', 'CPFilterBar']);
+                break;
+            case UiTypeDef.CPListHeader:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'CPGoBack', 'CPSearchBar', 'searchscheme', 'CPIconButton']);
+                break;
+            case UiTypeDef.CPListToolbar:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency'
+                    , 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer'
+                    , 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                break;
+            case UiTypeDef.CPCardPage:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
+                break;
+            case UiTypeDef.CPCardHeader:
+                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
+                break;
+            case UiTypeDef.radiogroup:
+            case UiTypeDef.checkbox:
+            case UiTypeDef.inputmap:
+            case UiTypeDef.editor:
+            case UiTypeDef.autoselect:
+            case UiTypeDef.searchscheme:
+            case UiTypeDef.CPBpmSubmit:
+            case UiTypeDef.bpmapprovew:
+            case UiTypeDef.printbutton:
+            case UiTypeDef.text:
+            case UiTypeDef.textarea:
+            case UiTypeDef.option:
+            case UiTypeDef.tablecol:
+            case UiTypeDef.enumselect:
+            case UiTypeDef.inputbutton:
+            case UiTypeDef.cascader:
+            case UiTypeDef.timepicker:
+            case UiTypeDef.rangepicker:
+            case UiTypeDef.attachupload:
+            case UiTypeDef.buttonitem:
+            case UiTypeDef.imageupload:
+            case UiTypeDef.divide:
+            case UiTypeDef.attachmgrw:
+            case UiTypeDef.button:
+            case UiTypeDef.buttonrefer:
+            case UiTypeDef.caption:
+            case UiTypeDef.input:
+            case UiTypeDef.datepicker:
+            case UiTypeDef.inputnumber:
+            case UiTypeDef.inputrefer:
+            case UiTypeDef.switch:
+                uiSubSet = [];
+                break;
+        }
     }
 
     onPageTypes(options){

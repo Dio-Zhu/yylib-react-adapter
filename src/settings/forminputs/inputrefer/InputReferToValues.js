@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 import FormItemType from '../../forminputs/FormItemType';
 import FormInputsUtil from '../FormInputsUtil';
 module.exports = function(options){
@@ -16,7 +16,7 @@ module.exports = function(options){
     //下拉列表配置项
     // if(tplNode.uitype == UiTypeDef.inputrefer || isFormItem || isEditItem || isSearchItem ) {
         delete tplNode.serverUrl;//清理掉之前记录在数据库的旧IP
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             if(!(meta.name in formData))continue;
             var value = formData[meta.name];

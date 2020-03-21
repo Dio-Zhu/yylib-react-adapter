@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import ButtonSelectMeta from '../settings/button/ButtonSelectMeta';
 import ButtonSelectPage from '../settings/button/ButtonSelectPage';
 import ButtonSelectToValues from '../settings/button/ButtonSelectToValues';
-export default class ButtonSelectAdapter extends PropAdapter{
+export default class ButtonSelectAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(ButtonSelectMeta(options));
+        return (baseMetas||[]).concat(ButtonSelectMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

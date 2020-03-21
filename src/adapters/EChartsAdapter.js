@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import EChartsMeta from '../settings/echarts/EChartsMeta';
 import EChartsValues from '../settings/echarts/EChartsValues';
 import EChartsToValues from '../settings/echarts/EChartsToValues';
-export default class EChartsAdapter extends PropAdapter{
+export default class EChartsAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(EChartsMeta(options));
+        return (baseMetas||[]).concat(EChartsMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

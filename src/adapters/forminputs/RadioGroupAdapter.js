@@ -1,17 +1,17 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import RadioGroupMeta from '../../settings/forminputs/radio/RadioGroupMeta';
 import RadioGroupToValues from '../../settings/forminputs/radio/RadioGroupToValues';
 import RadioGroupValues from '../../settings/forminputs/radio/RadioGroupValues';
 import RadioGroupPage from '../../settings/forminputs/radio/RadioGroupPage';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class RadioGroupAdapter extends PropAdapter{
+export default class RadioGroupAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = RadioGroupMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     //配置页面的属性
     onPageProps(options){

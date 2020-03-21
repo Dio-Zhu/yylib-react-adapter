@@ -1,21 +1,21 @@
 import {MetaType,SUPPORT_SERVER} from '../../index-deps';
-var {UiTypeDef} = require('../../Defines');
+var {UiTypeDef} = require('../../MyUiDefines');
 module.exports = function(options){
     var {tplNode,tplTree} = options;
     var PropMeta =[];
-    if(!process.env.YYLIB_ENV) {//开发态
-        PropMeta.push(
-            {
-                name: 'logicFormula',
-                label: '逻辑公式',
-                type: MetaType.LogicFormula,
-                props: {
-
-                },
-                defaultValue: null
-            }
-        )
-    }
+    // if(!process.env.YYLIB_ENV) {//开发态
+    //     PropMeta.push(
+    //         {
+    //             name: 'logicFormula',
+    //             label: '逻辑公式',
+    //             type: MetaType.LogicFormula,//对Blockly有依赖暂去除
+    //             props: {
+    //
+    //             },
+    //             defaultValue: null
+    //         }
+    //     )
+    // }
     PropMeta = PropMeta.concat([{
         name: 'system',
         label: '系统对象',

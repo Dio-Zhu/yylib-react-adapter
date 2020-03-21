@@ -1,14 +1,14 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPAuditInfoMeta from '../../settings/compact/CPAuditInfoMeta';
 import CPAuditInfoToValues from '../../settings/compact/CPAuditInfoToValues';
 import CPAuditInfoValues from '../../settings/compact/CPAuditInfoValues';
-export default class CPAuditInfoAdapter extends PropAdapter{
+export default class CPAuditInfoAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPAuditInfoMeta(options));
+        return (baseMetas||[]).concat(CPAuditInfoMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

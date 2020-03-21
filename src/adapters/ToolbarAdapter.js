@@ -1,12 +1,12 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import ToolbarMeta from '../settings/toolbar/ToolbarMeta';
-export default class ToolbarAdapter extends PropAdapter{
+export default class ToolbarAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(ToolbarMeta(options));
+        return (baseMetas||[]).concat(ToolbarMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

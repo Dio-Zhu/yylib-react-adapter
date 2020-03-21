@@ -1,7 +1,7 @@
 module.exports = function(options){
     var {formMeta,formData,tplNode,tplTree} = options;
     tplNode.dataprops=tplNode.dataprops||{};
-    for(var i=0;i<formMeta.length;i++) {
+    for(var i=0;i<(formMeta||[]).length;i++) {
         var meta = formMeta[i];
         if(!(meta.name in formData))continue;
         var value = formData[meta.name];

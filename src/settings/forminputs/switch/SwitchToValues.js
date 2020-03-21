@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 import FormInputsUtil from '../FormInputsUtil';
 
 module.exports = function(options){
@@ -15,7 +15,7 @@ module.exports = function(options){
     var isSearchItem = (tplNode.uitype == UiTypeDef.searchitem);
 
     // if(tplNode.uitype == UiTypeDef.switch || isFormItem || isEditItem || isSearchItem) {
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             if(!(meta.name in formData))continue;
             var value = formData[meta.name];

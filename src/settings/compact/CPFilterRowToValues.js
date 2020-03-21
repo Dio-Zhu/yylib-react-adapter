@@ -1,6 +1,6 @@
 module.exports = function (options) {
     const {formMeta, formData, tplNode, tplTree} = options;
-    for (let i = 0; i < formMeta.length; i++) {
+    for (let i = 0; i < (formMeta||[]).length; i++) {
         let meta = formMeta[i];
         if(!(meta.name in formData))continue;
         var value = formData[meta.name];

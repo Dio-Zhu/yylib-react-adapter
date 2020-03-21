@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import PrintButtonMeta from '../settings/printbutton/PrintButtonMeta';
 import PrintButtonToValues from '../settings/printbutton/PrintButtonToValues';
 import PrintButtonValues from '../settings/printbutton/PrintButtonValues';
-export default class PrintButtonAdapter extends PropAdapter{
+export default class PrintButtonAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(PrintButtonMeta(options));
+        return (baseMetas||[]).concat(PrintButtonMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

@@ -9,7 +9,7 @@ module.exports = function(options){
     // //处理特有属性
     // if(tplNode.uitype == UiTypeDef.input||
     //     tplNode.uitype == UiTypeDef.formitemw) {
-    //     for(var i=0;i<formMeta.length;i++) {
+    //     for(var i=0;i<(formMeta||[]).length;i++) {
     //         var meta = formMeta[i];
     //         switch (meta.name) {
     //             case "value":{

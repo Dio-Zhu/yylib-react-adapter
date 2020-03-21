@@ -1,4 +1,4 @@
-import {UiTitleDef,FormItemType} from '../../Defines';
+import {UiTitleDef,FormItemType} from '../../MyUiDefines';
 import {MetaType,SUPPORT_SERVER} from '../../index-deps';
 import FormInputsMeta from '../forminputs/FormInputsMeta';
 const operations = {

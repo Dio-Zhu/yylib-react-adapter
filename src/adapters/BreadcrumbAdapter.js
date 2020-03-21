@@ -1,13 +1,13 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import BreadcrumbMeta from '../settings/breadcrumb/BreadcrumbMeta';
 import BreadcrumbPage from '../settings/breadcrumb/BreadcrumbPage';
-export default class BreadcrumbAdapter extends PropAdapter{
+export default class BreadcrumbAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(BreadcrumbMeta(options));
+        return (baseMetas||[]).concat(BreadcrumbMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

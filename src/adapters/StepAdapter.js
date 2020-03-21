@@ -1,13 +1,13 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import StepMeta from '../settings/steps/StepMeta';
 import StepToValues from '../settings/steps/StepToValues';
-export default class StepAdapter extends PropAdapter{
+export default class StepAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(StepMeta(options));
+        return (baseMetas||[]).concat(StepMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

@@ -1,16 +1,16 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import TextareaMeta from '../../settings/forminputs/textarea/TextareaMeta';
 import TextareaToValues from '../../settings/forminputs/textarea/TextareaToValues';
 import TextareaValues from '../../settings/forminputs/textarea/TextareaValues';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class TextareaAdapter extends PropAdapter{
+export default class TextareaAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = TextareaMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

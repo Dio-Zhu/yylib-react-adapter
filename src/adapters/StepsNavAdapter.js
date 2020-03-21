@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import StepsNavMeta from '../settings/stepsnav/StepsNavMeta';
 import StepsNavToValues from '../settings/stepsnav/StepsNavToValues';
 import StepsNavPage from '../settings/stepsnav/StepsNavPage';
-export default class StepsNavAdapter extends PropAdapter{
+export default class StepsNavAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(StepsNavMeta(options));
+        return (baseMetas||[]).concat(StepsNavMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

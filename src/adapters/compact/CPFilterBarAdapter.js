@@ -1,13 +1,13 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPFilterBarMeta from '../../settings/compact/CPFilterBarMeta';
 import CPFilterBarPage from '../../settings/compact/CPFilterBarPage';
-export default class CPFilterBarAdapter extends PropAdapter{
+export default class CPFilterBarAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPFilterBarMeta(options));
+        return (baseMetas||[]).concat(CPFilterBarMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

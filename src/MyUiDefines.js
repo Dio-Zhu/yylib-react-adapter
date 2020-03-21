@@ -1,12 +1,13 @@
 /**
  * UI枚举定义
  */
+import {UiDefines} from './index-deps';
 //常用
 var UiTypeDef = {};//定义uitype值,uitype标识元素类型
 var UiTitleDef = {};//定义uititle值,uititle标识元素名称
 var UiDefaultDef = {};//定义uidefault值,uidefault预置元素默认属性值
 var UiIconDef = {};//定义uiicon值,uiicon为元素图标名称
-
+var UiIsViewDef={};
 UiTypeDef.page = 'YYPage';
 UiTitleDef.page = '页面';
 
@@ -299,31 +300,17 @@ UiTypeDef.IjzListView = 'IjzListView';
 UiTitleDef.IjzListView = '列表卡片视图';
 /**----模板-建造公有云----end**/
 
+//-------------组件集合定义-------------
+const myUiDefines = new UiDefines();
 
-//-------------组装成对象集合-------------
-const UiObjects = {};
 for (let key in UiTypeDef) {
-    UiObjects[key] = UiObjects[key] || {};
-    UiObjects[key].uitype = UiTypeDef[key]
+    myUiDefines.add(key,UiTypeDef[key],UiTitleDef[key],UiIconDef[key], UiDefaultDef[key],UiIsViewDef[key]);
 }
-for (let key in UiTitleDef) {
-    UiObjects[key] = UiObjects[key] || {};
-    UiObjects[key].uititle = UiTitleDef[key]
-}
-for (let key in UiIconDef) {
-    UiObjects[key] = UiObjects[key] || {};
-    UiObjects[key].uiicon = UiIconDef[key]
-}
-for (let key in UiDefaultDef) {
-    UiObjects[key] = UiObjects[key] || {};
-    UiObjects[key].uidefault = UiDefaultDef[key]
-}
-//-------------组装成对象集合-------------end
 
 module.exports = {
     UiTypeDef,
     UiTitleDef,
     UiDefaultDef,
     UiIconDef,
-    UiObjects
+    UiObjects:myUiDefines
 };

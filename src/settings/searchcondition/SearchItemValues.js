@@ -2,7 +2,7 @@ import FormInputsValues from '../forminputs/FormInputsValues';
 module.exports = function(options){
     var newFormData = {};//处理公共属性
     var {formMeta,tplNode,tplTree} = options;
-    for(var i=0;i<formMeta.length;i++){
+    for(var i=0;i<(formMeta||[]).length;i++){
         var meta = formMeta[i];
         switch(meta.name){
             // case "fieldtype":{

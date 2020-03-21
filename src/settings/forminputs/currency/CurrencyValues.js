@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 
 module.exports = function(options){
     var {formMeta,tplNode,tplTree} = options;
@@ -16,7 +16,7 @@ module.exports = function(options){
     //     ||tplNode.uitype == UiTypeDef.edititemw//编辑项
     //     ||isSearchItem//条件项
     // ) {
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             switch (meta.name) {
                 case "decimal":

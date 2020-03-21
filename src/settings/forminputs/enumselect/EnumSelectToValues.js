@@ -1,5 +1,5 @@
 import {LogicUtils} from '../../../index-deps';
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 import FormItemType from '../FormItemType';
 import FormInputsUtil from '../FormInputsUtil';
 
@@ -22,7 +22,7 @@ module.exports = function(options){
     // // 自定义档案枚举选择配置
     // if(tplNode.uitype == UiTypeDef.enumselect
     //     || isFormItem || isEditItem || isSearchItem) {
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             if(!(meta.name in formData))continue;
             var value = formData[meta.name];

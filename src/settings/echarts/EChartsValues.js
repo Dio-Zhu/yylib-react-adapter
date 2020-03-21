@@ -2,7 +2,7 @@ module.exports = function (options) {
     var newFormData = {};
     var {formMeta, tplNode, tplTree} = options;
     tplNode.options = tplNode.options||{};
-    for (var i = 0; i < formMeta.length; i++) {
+    for (var i = 0; i < (formMeta||[]).length; i++) {
         var meta = formMeta[i];
         switch (meta.name) {
             case "title.text": {

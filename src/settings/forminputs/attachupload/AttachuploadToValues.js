@@ -10,7 +10,7 @@ module.exports = function(options){
     // var isEditItem = (tplNode.uitype == UiTypeDef.edititemw && tplNode.uisubtype==FormItemType.attachupload);
     // if(tplNode.uitype == UiTypeDef.attachupload
     //     || isFormItem || isEditItem ){
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             if(!(meta.name in formData))continue;
             var value = formData[meta.name];

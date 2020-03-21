@@ -1,15 +1,15 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import AttachuploadMeta from '../../settings/forminputs/attachupload/AttachuploadMeta';
 import AttachuploadToValues from '../../settings/forminputs/attachupload/AttachuploadToValues';
 import AttachuploadValues from '../../settings/forminputs/attachupload/AttachuploadValues';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class AttachuploadAdapter extends PropAdapter{
+export default class AttachuploadAdapter extends MyPropAdapter{
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = AttachuploadMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

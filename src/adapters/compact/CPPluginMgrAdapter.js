@@ -1,12 +1,12 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPPluginMgrMeta from '../../settings/compact/CPPluginMgrMeta';
-export default class CPPluginMgrAdapter extends PropAdapter{
+export default class CPPluginMgrAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPPluginMgrMeta(options));
+        return (baseMetas||[]).concat(CPPluginMgrMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

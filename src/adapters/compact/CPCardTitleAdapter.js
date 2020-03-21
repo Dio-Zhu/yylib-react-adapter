@@ -1,6 +1,6 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPCardTitleToValues from '../../settings/compact/CPCardTitleToValues';
-export default class CPCardTitleAdapter extends PropAdapter{
+export default class CPCardTitleAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

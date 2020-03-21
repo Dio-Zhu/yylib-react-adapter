@@ -1,6 +1,6 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import RowPage from '../settings/row/RowPage';
-export default class RowAdapter extends PropAdapter{
+export default class RowAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

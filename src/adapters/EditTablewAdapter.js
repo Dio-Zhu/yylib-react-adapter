@@ -1,15 +1,15 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import EditTablewMeta from '../settings/edittablew/EditTablewMeta';
 import EditTablewToValues from '../settings/edittablew/EditTablewToValues';
 import EditTablewValues from '../settings/edittablew/EditTablewValues';
 import EditTablewPage from '../settings/edittablew/EditTablewPage';
-export default class EditTablewAdapter extends PropAdapter{
+export default class EditTablewAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(EditTablewMeta(options));
+        return (baseMetas||[]).concat(EditTablewMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

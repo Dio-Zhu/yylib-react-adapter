@@ -1,15 +1,15 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import TableMeta from '../settings/table/TableMeta';
 import TableToValues from '../settings/table/TableToValues';
 import TableValues from '../settings/table/TableValues';
 import TablePage from '../settings/table/TablePage';
-export default class TableAdapter extends PropAdapter{
+export default class TableAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(TableMeta(options));
+        return (baseMetas||[]).concat(TableMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

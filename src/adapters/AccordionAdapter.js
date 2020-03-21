@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import AccordionMeta from '../settings/accordions/AccordionMeta';
 import AccordionToValues from '../settings/accordions/AccordionToValues';
-export default class AccordionAdapter extends PropAdapter{
+export default class AccordionAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let metas = super.onPageMetas(options);
         let myMetas = AccordionMeta(options);
-        return [].concat(metas,myMetas);
+        return metas.concat(myMetas);
     }
 
     // //配置页面的属性

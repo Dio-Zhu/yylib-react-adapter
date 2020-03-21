@@ -1,6 +1,6 @@
 import Utils from '../../Utils';
 import {MetaType,SUPPORT_SERVER} from '../../index-deps';
-import {UiTitleDef} from '../../Defines';
+import {UiTitleDef} from '../../MyUiDefines';
 import FormItemType from '../forminputs/FormItemType';
 module.exports = function(options) {
     var {tplNode,tplTree} = options;

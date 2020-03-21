@@ -1,5 +1,5 @@
 import Utils from '../../Utils';
-import {UiTypeDef, UiTitleDef} from '../../Defines';
+import {UiTypeDef, UiTitleDef} from '../../MyUiDefines';
 module.exports = function(options) {
   return {
         "buttons":[{

@@ -1,15 +1,15 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPFRFieldMeta from '../../settings/compact/CPFRFieldMeta';
 import CPFRFieldToValues from '../../settings/compact/CPFRFieldToValues';
 import CPFRFieldValues from '../../settings/compact/CPFRFieldValues';
 
-export default class CPFRFieldAdapter extends PropAdapter{
+export default class CPFRFieldAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPFRFieldMeta(options));
+        return (baseMetas||[]).concat(CPFRFieldMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

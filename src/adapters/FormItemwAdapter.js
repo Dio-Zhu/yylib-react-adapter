@@ -1,15 +1,15 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import FormItemwMeta from '../settings/formw/FormItemwMeta';
 import FormItemwToValues from '../settings/formw/FormItemwToValues';
 import FormItemwValues from '../settings/formw/FormItemwValues';
 import FormItemwPage from '../settings/formw/FormItemwPage';
-export default class FormItemwAdapter extends PropAdapter{
+export default class FormItemwAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(FormItemwMeta(options));
+        return (baseMetas||[]).concat(FormItemwMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

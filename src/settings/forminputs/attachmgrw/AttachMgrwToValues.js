@@ -10,7 +10,7 @@ module.exports = function(options){
     // if(tplNode.uitype == UiTypeDef.attachmgrw
     //     ||tplNode.uitype == UiTypeDef.CPAttachMgr
     //     ||tplNode.uitype == UiTypeDef.formitemw) {
-        for(var i=0;i<formMeta.length;i++) {
+        for(var i=0;i<(formMeta||[]).length;i++) {
             var meta = formMeta[i];
             if(!(meta.name in formData))continue;
             var value = formData[meta.name];

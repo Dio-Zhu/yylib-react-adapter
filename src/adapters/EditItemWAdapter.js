@@ -1,15 +1,15 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import EditItemWMeta from '../settings/edittablew/EditItemWMeta';
 import EditItemWToValues from '../settings/edittablew/EditItemWToValues';
 import EditItemWValues from '../settings/edittablew/EditItemWValues';
 import EditItemWPage from '../settings/edittablew/EditItemWPage';
-export default class EditItemWAdapter extends PropAdapter{
+export default class EditItemWAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(EditItemWMeta(options));
+        return (baseMetas||[]).concat(EditItemWMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

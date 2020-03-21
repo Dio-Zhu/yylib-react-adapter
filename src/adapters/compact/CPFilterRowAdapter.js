@@ -1,15 +1,15 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPFilterRowMeta from '../../settings/compact/CPFilterRowMeta';
 import CPFilterRowToValues from '../../settings/compact/CPFilterRowToValues';
 import CPFilterRowValues from '../../settings/compact/CPFilterRowValues';
 import CPFilterRowPage from '../../settings/compact/CPFilterRowPage';
-export default class CPFilterRowAdapter extends PropAdapter{
+export default class CPFilterRowAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPFilterRowMeta(options));
+        return (baseMetas||[]).concat(CPFilterRowMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

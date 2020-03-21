@@ -1,7 +1,7 @@
 module.exports = function (options) {
     let newFormData = {};
     const {formMeta, tplNode, tplTree} = options;
-    for (let i = 0; i < formMeta.length; i++) {
+    for (let i = 0; i < (formMeta||[]).length; i++) {
         let meta = formMeta[i];
         switch (meta.name) {
             // case 'title': {

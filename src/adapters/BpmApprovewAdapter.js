@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import BpmApprovewMeta from '../settings/bpm/BpmApprovewMeta';
 import BpmApprovewToValues from '../settings/bpm/BpmApprovewToValues';
 import BpmApprovewValues from '../settings/bpm/BpmApprovewValues';
-export default class BpmApprovewAdapterAdapter extends PropAdapter{
+export default class BpmApprovewAdapterAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(BpmApprovewMeta(options));
+        return (baseMetas||[]).concat(BpmApprovewMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

@@ -1,14 +1,14 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import TreeNodeMeta from '../settings/tree/TreeNodeMeta';
 import TreeNodePage from '../settings/tree/TreeNodePage';
 import TreeNodeToValues from '../settings/tree/TreeNodeToValues';
-export default class TreeNodeAdapter extends PropAdapter{
+export default class TreeNodeAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(TreeNodeMeta(options));
+        return (baseMetas||[]).concat(TreeNodeMeta(options));
     }
     //配置页面的属性
     onPageProps(options){

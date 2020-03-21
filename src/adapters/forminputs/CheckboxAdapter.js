@@ -1,6 +1,6 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CheckboxToValues from '../../settings/forminputs/checkbox/CheckboxToValues';
-export default class CheckboxAdapter extends PropAdapter{
+export default class CheckboxAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据

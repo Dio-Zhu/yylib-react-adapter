@@ -1,13 +1,13 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import CPIconButtonMeta from '../../settings/compact/CPIconButtonMeta';
 import CPIconButtonToValues from '../../settings/compact/CPIconButtonToValues';
-export default class CPIconButtonAdapter extends PropAdapter{
+export default class CPIconButtonAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
-        return baseMetas.concat(CPIconButtonMeta(options));
+        return (baseMetas||[]).concat(CPIconButtonMeta(options));
     }
     // //配置页面的属性
     // onPageProps(options){

@@ -1,9 +1,10 @@
-import {PropAdapter,MetaType} from '../../index-deps';
+import {MetaType} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import AttachMgrwMeta from '../../settings/forminputs/attachmgrw/AttachMgrwMeta';
 import AttachMgrwToValues from '../../settings/forminputs/attachmgrw/AttachMgrwToValues';
 import AttachMgrwValues from '../../settings/forminputs/attachmgrw/AttachMgrwValues';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class AttachMgrwAdapter extends PropAdapter{
+export default class AttachMgrwAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
@@ -17,7 +18,7 @@ export default class AttachMgrwAdapter extends PropAdapter{
             defaultValue: ''
         });
         let myMetas = AttachMgrwMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

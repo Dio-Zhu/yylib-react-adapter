@@ -1,7 +1,7 @@
 import {MetaType} from '../../index-deps';
 import Utils from '../../Utils';
 import FormItemType from '../forminputs/FormItemType';
-import {UiTitleDef} from '../../Defines';
+import {UiTitleDef} from '../../MyUiDefines';
 import FormInputsMeta from '../forminputs/FormInputsMeta';
 
 module.exports = function(options) {

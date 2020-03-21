@@ -1,5 +1,5 @@
 import {MetaType} from '../../../index-deps';
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 
 module.exports = function(options) {
     var {tplNode,tplTree} = options;

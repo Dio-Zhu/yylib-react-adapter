@@ -7,7 +7,7 @@
  * }
  */
 import FormItemType from './FormItemType';
-import {UiTypeDef} from '../../Defines';
+import {UiTypeDef} from '../../MyUiDefines';
 module.exports = function(options){
     let {tplTree,tplNode,tplParentNode} = options;
     if(tplParentNode.uitype == UiTypeDef.formw){//父节点为表单项

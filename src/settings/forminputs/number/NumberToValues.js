@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 import FormItemType from '../../forminputs/FormItemType';
 import FormInputsUtil from '../FormInputsUtil';
 import CurrencyToValues from '../currency/CurrencyToValues';
@@ -20,7 +20,7 @@ module.exports = function(options){
         var isSearchItem = (tplNode.uitype == UiTypeDef.searchitem && tplNode.inputtype == FormItemType.number);
         // if(tplNode.uitype == UiTypeDef.inputnumber
         //     || isFormItem || isEditItem || isSearchItem ) {
-            for(var i=0;i<formMeta.length;i++) {
+            for(var i=0;i<(formMeta||[]).length;i++) {
                 var meta = formMeta[i];
                 if(!(meta.name in formData))continue;
                 var value = formData[meta.name];

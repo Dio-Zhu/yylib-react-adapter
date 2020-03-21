@@ -1,4 +1,4 @@
-import {UiTypeDef} from '../../../Defines';
+import {UiTypeDef} from '../../../MyUiDefines';
 import CurrencyValues from '../currency/CurrencyValues';
 
 module.exports = function(options){
@@ -19,7 +19,7 @@ module.exports = function(options){
         //     ||tplNode.uitype == UiTypeDef.edititemw//编辑项
         //     ||isSearchItem//条件项
         // ) {
-            for(var i=0;i<formMeta.length;i++) {
+            for(var i=0;i<(formMeta||[]).length;i++) {
                 var meta = formMeta[i];
                 switch (meta.name) {
                     case "defaultValue":

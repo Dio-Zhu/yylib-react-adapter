@@ -1,16 +1,16 @@
-import {PropAdapter} from '../../index-deps';
+import MyPropAdapter from '../../MyPropAdapter';
 import InputMeta from '../../settings/forminputs/input/InputMeta';
 import InputToValues from '../../settings/forminputs/input/InputToValues';
 import InputValues from '../../settings/forminputs/input/InputValues';
 import FormInputsToNode from  '../../settings/forminputs/FormInputsToNode';
-export default class InputAdapter extends PropAdapter{
+export default class InputAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     //配置页面的元数据
     onPageMetas(options){
         let baseMetas = super.onPageMetas(options);
         let myMetas = InputMeta(options);
-        return baseMetas.concat(myMetas);
+        return (baseMetas||[]).concat(myMetas);
     }
     // //配置页面的属性
     // onPageProps(options){

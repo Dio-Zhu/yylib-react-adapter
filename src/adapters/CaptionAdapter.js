@@ -1,6 +1,6 @@
-import {PropAdapter} from '../index-deps';
+import MyPropAdapter from '../MyPropAdapter';
 import CaptionToValues from '../settings/caption/CaptionToValues';
-export default class CaptionAdapter extends PropAdapter{
+export default class CaptionAdapter extends MyPropAdapter{
 
     //--------------生命周期方法--------------------
     // //配置页面的元数据
