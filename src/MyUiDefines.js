@@ -19,11 +19,11 @@ UiTitleDef.caption = '标题文本';
 
 UiTypeDef.toolbar = 'YYToolbar';
 UiTitleDef.toolbar = '工具栏';
-UiIconDef.toolbar = 'icon-gongjulan';
+//UiIconDef.toolbar = 'icon-gongjulan';
 
 UiTypeDef.button = 'YYButton';
 UiTitleDef.button = '按钮';
-UiIconDef.button = 'icon-anniu';
+//UiIconDef.button = 'icon-anniu';
 
 UiTypeDef.buttonselect = 'YYButtonSelect';
 UiTitleDef.buttonselect = '下拉按钮';
@@ -32,23 +32,23 @@ UiTitleDef.buttonitem = '下拉按钮项';
 
 UiTypeDef.table = 'YYTable';
 UiTitleDef.table = '基础表格';
-UiIconDef.table = 'icon-biaoge';
+//UiIconDef.table = 'icon-biaoge';
 UiTypeDef.tablecol = 'YYTableCol';
 UiTitleDef.tablecol = '表格列';
 
 UiTypeDef.tablew = 'TableWidget';
 UiTitleDef.tablew = '数据表格';
-UiIconDef.tablew = 'icon-biaoge';
+//UiIconDef.tablew = 'icon-biaoge';
 
 UiTypeDef.edittablew = 'EditTableWidget';
 UiTitleDef.edittablew = '编辑表格';
-UiIconDef.edittablew = 'icon-biaoge';
+//UiIconDef.edittablew = 'icon-biaoge';
 UiTypeDef.edititemw = 'EditItemWidget';
 UiTitleDef.edititemw = '编辑表格列';
 
 UiTypeDef.breadcrumb = 'YYBreadcrumb';
 UiTitleDef.breadcrumb = '面包屑';
-UiIconDef.breadcrumb = 'icon-mianbaoxie';
+//UiIconDef.breadcrumb = 'icon-mianbaoxie';
 
 UiTypeDef.breadcrumbitem = 'YYBreadcrumbItem';
 UiTitleDef.breadcrumbitem = '面包屑元素';
@@ -58,30 +58,30 @@ UiTitleDef.iframe = '内嵌页面';
 //布局
 UiTypeDef.accordions = 'YYAccordions';
 UiTitleDef.accordions = '折叠卡片';
-UiIconDef.accordions = 'icon-shoufengqin';
+//UiIconDef.accordions = 'icon-shoufengqin';
 UiTypeDef.accordion = 'YYAccordion';
 UiTitleDef.accordion = '子卡片';
 
 UiTypeDef.tabs = 'YYTabs';
 UiTitleDef.tabs = '多页签';
-UiIconDef.tabs = 'icon-biaoqianye';
+//UiIconDef.tabs = 'icon-biaoqianye';
 UiTypeDef.tab = 'YYTab';
 UiTitleDef.tab = '子标签';
 UiTypeDef.row = 'YYRow';
 UiTitleDef.row = '24格布局';
-UiIconDef.row = 'icon-zhagebuju';
+//UiIconDef.row = 'icon-zhagebuju';
 UiTypeDef.col = 'YYCol';
 UiTitleDef.col = '格子';
 UiTypeDef.panel = 'YYPanel';
 UiTitleDef.panel = '面板';
-UiIconDef.panel = 'icon-danmianban';
+//UiIconDef.panel = 'icon-danmianban';
 UiTypeDef.scrollbar = 'YYScrollbar';
 UiTitleDef.scrollbar = '滚动区域';
-UiIconDef.scrollbar = 'icon-rongqizujian';
+//UiIconDef.scrollbar = 'icon-rongqizujian';
 UiDefaultDef.scrollbar = {width:300,height:300};
 UiTypeDef.tree = 'YYTree';
 UiTitleDef.tree = '层次树';
-UiIconDef.tree = 'icon-shujiegou';
+//UiIconDef.tree = 'icon-shujiegou';
 UiTypeDef.treenode = 'YYTreeNode';
 UiTitleDef.treenode = '树节点';
 UiTypeDef.divide = 'YYDivide';
@@ -91,7 +91,7 @@ UiTitleDef.modal = '弹窗层';
 /**-------表单相关-----begin**/
 UiTypeDef.formw = 'FormWidget';
 UiTitleDef.formw = '表单';
-UiIconDef.formw = 'icon-biaodan';
+//UiIconDef.formw = 'icon-biaodan';
 UiDefaultDef.formw = {colnumber:2};
 
 UiTypeDef.formitemw = 'FormItemWidget';
@@ -99,54 +99,54 @@ UiTitleDef.formitemw = '表单项';
 
 UiTypeDef.input = 'YYInput';
 UiTitleDef.input = '文本框';
-UiIconDef.input = 'icon-shurukuang';
+//UiIconDef.input = 'icon-shurukuang';
 
 UiTypeDef.inputhidden = UiTypeDef.formitemw;
 UiTitleDef.inputhidden = '隐藏框';
 
 UiTypeDef.textarea = 'YYTextarea';
 UiTitleDef.textarea = '多行文本域';
-UiIconDef.textarea = 'icon-wenbenyu';
+//UiIconDef.textarea = 'icon-wenbenyu';
 
 UiTypeDef.text = 'YYText';
 UiTitleDef.text = '纯文本';
-UiIconDef.text = 'icon-chunwenben';
+//UiIconDef.text = 'icon-chunwenben';
 
 UiTypeDef.datepicker = 'YYDatePicker';
 UiTitleDef.datepicker = '日期框';
-UiIconDef.datepicker = 'icon-riqixuanzekuang';
+//UiIconDef.datepicker = 'icon-riqixuanzekuang';
 
 UiTypeDef.timepicker = 'YYTimePicker';
 UiTitleDef.timepicker = '时间框';
-UiIconDef.timepicker = 'icon-shijianxuanzekuang';
+//UiIconDef.timepicker = 'icon-shijianxuanzekuang';
 
 UiTypeDef.rangepicker = 'YYRangePicker';
 UiTitleDef.rangepicker = '日期范围框';
-UiIconDef.rangepicker = 'icon-riqixuanzekuang';
+//UiIconDef.rangepicker = 'icon-riqixuanzekuang';
 
 UiTypeDef.inputnumber = 'YYInputNumber';
 UiTitleDef.inputnumber = '整数框';
-UiIconDef.inputnumber = 'icon-shuzishurukuang';
+//UiIconDef.inputnumber = 'icon-shuzishurukuang';
 
 UiTypeDef.currency = 'YYInputNumber';
 UiTitleDef.currency = '精确数值框';
-UiIconDef.currency = 'icon-shuzishurukuang';
+//UiIconDef.currency = 'icon-shuzishurukuang';
 UiDefaultDef.currency = {type:'currency'};
 
 UiTypeDef.inputrefer = 'YYReferInput';
 UiTitleDef.inputrefer = '参照框';
-UiIconDef.inputrefer = 'icon-canzhao';
+//UiIconDef.inputrefer = 'icon-canzhao';
 
 UiTypeDef.buttonrefer = 'YYReferButton';
 UiTitleDef.buttonrefer = '按钮参照';
-UiIconDef.buttonrefer = 'icon-canzhao';
+//UiIconDef.buttonrefer = 'icon-canzhao';
 
 UiTypeDef.switch = 'YYSwitch';
 UiTitleDef.switch = '开关';
-UiIconDef.switch = 'icon-kaiguan';
+//UiIconDef.switch = 'icon-kaiguan';
 UiTypeDef.select = 'YYSelect';
 UiTitleDef.select = '下拉选择';
-UiIconDef.select = 'icon-xialaxuanze';
+//UiIconDef.select = 'icon-xialaxuanze';
 UiTypeDef.option = 'YYOption';
 UiTitleDef.option = '下拉选项';
 UiTypeDef.autoselect = 'YYAutoSelect';
@@ -192,13 +192,13 @@ UiTitleDef.splitpane = '2格布局';
 //特殊
 UiTypeDef.searchcondition = 'YYSearchCondition';
 UiTitleDef.searchcondition = '搜索框';
-UiIconDef.searchcondition = '';
+//UiIconDef.searchcondition = '';
 UiTypeDef.searchitem = 'YYSearchItem';
 UiTitleDef.searchitem = '搜索项';
-UiIconDef.searchitem = '';
+//UiIconDef.searchitem = '';
 UiTypeDef.searchscheme = 'YYSchemeGroup';
 UiTitleDef.searchscheme = '方案栏';
-UiIconDef.searchscheme = '';
+//UiIconDef.searchscheme = '';
 
 UiTypeDef.stepsnav = 'YYStepsNav';
 UiTitleDef.stepsnav = '步骤条导航';
@@ -236,7 +236,7 @@ UiTitleDef.chartw = 'ECharts图表';
 /**----模板-建造私有云----begin**/
 UiTypeDef.CPListPage = 'CPListPage';
 UiTitleDef.CPListPage = '单据列表';
-UiIconDef.CPListPage = 'icon-wenbenyu';
+//UiIconDef.CPListPage = 'icon-wenbenyu';
 
 UiTypeDef.CPListHeader = 'CPListHeader';
 UiTitleDef.CPListHeader = '列表头部栏';
@@ -249,7 +249,7 @@ UiTitleDef.CPListTable = '列表数据表格';
 
 UiTypeDef.CPCardPage = 'CPCardPage';
 UiTitleDef.CPCardPage = '单据表单';
-UiIconDef.CPCardPage = 'icon-wenbenyu';
+//UiIconDef.CPCardPage = 'icon-wenbenyu';
 
 UiTypeDef.CPCardHeader = 'CPCardHeader';
 UiTitleDef.CPCardHeader = '卡片头部栏';
@@ -282,13 +282,13 @@ UiTypeDef.CPPluginMgr = 'CPPluginMgr';
 UiTitleDef.CPPluginMgr = '插件管理';
 UiTypeDef.CPFilterBar = 'CPFilterBar';
 UiTitleDef.CPFilterBar = '筛选条件栏';
-UiIconDef.CPFilterBar = '';
+//UiIconDef.CPFilterBar = '';
 UiTypeDef.CPFilterRow = 'CPFilterRow ';
 UiTitleDef.CPFilterRow = '筛选条件';
-UiIconDef.CPFilterRow = '';
+//UiIconDef.CPFilterRow = '';
 UiTypeDef.CPFRField = 'CPFRField';
 UiTitleDef.CPFRField = '条件元素';
-UiIconDef.CPFRField = '';
+//UiIconDef.CPFRField = '';
 /**----模板-建造私有云---end**/
 
 /**----模板-建造公有云----begin**/
