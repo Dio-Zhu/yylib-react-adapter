@@ -63,7 +63,7 @@ registerLibrary(/******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0a8d50ec13c0e2325c0b";
+/******/ 	var hotCurrentHash = "5ac5c9bc966711b1789a";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -2951,204 +2951,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout() {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-})();
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch (e) {
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch (e) {
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e) {
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e) {
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while (len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) {
-    return [];
-};
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () {
-    return '/';
-};
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function () {
-    return 0;
-};
-
-/***/ }),
-
 /***/ "./node_modules/webpack/buildin/module.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
@@ -3410,7 +3212,7 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
             }, {
                 uititle: "平台-特殊",
                 uiicon: 'tag',
-                children: [_MyUiDefines.UiTypeDef.chartw, _MyUiDefines.UiTypeDef.filterarea, _MyUiDefines.UiTypeDef.steps, _MyUiDefines.UiTypeDef.stepsnav, _MyUiDefines.UiTypeDef.iframe].map(function (uitype) {
+                children: [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.chartw, _MyUiDefines.UiTypeDef.filterarea, _MyUiDefines.UiTypeDef.steps, _MyUiDefines.UiTypeDef.stepsnav, _MyUiDefines.UiTypeDef.iframe].map(function (uitype) {
                     return _MyUiDefines.UiObjects.getByUiType(uitype);
                 })
             }, {
@@ -3459,7 +3261,7 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
                     uiSubSet = _UiSubUtils2.default.exclude(_MyUiDefines.UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar', 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr', 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
                     break;
                 case _MyUiDefines.UiTypeDef.toolbar:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency', 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer', 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.divide, _MyUiDefines.UiTypeDef.row, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonselect, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.input, _MyUiDefines.UiTypeDef.caption, _MyUiDefines.UiTypeDef.inputbutton, _MyUiDefines.UiTypeDef.datepicker, _MyUiDefines.UiTypeDef.inputnumber, _MyUiDefines.UiTypeDef.currency, _MyUiDefines.UiTypeDef.switch, _MyUiDefines.UiTypeDef.referinput, _MyUiDefines.UiTypeDef.radiogroup, _MyUiDefines.UiTypeDef.checkboxgroup, _MyUiDefines.UiTypeDef.inputrefer, _MyUiDefines.UiTypeDef.bpmsubmitw, _MyUiDefines.UiTypeDef.bpmapprovew, _MyUiDefines.UiTypeDef.printbutton, _MyUiDefines.UiTypeDef.searchcondition, _MyUiDefines.UiTypeDef.attachmgrw];
                     break;
                 case _MyUiDefines.UiTypeDef.area:
                     uiSubSet = _UiSubUtils2.default.exclude(_MyUiDefines.UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar', 'CPBpmSubmit', 'CPBpmApprove', 'CPAttachMgr', 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr']);
@@ -3486,7 +3288,7 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
                     uiSubSet = _UiSubUtils2.default.exclude(_MyUiDefines.UiTypeDef, uniqueParentItems);
                     break;
                 case _MyUiDefines.UiTypeDef.formw:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'button', 'buttonrefer', 'enumselect', 'inputrefer', 'textarea', 'datepicker', 'timepicker', 'rangepicker', 'input', 'select', 'inputnumber', 'currency', 'referinput', 'switch', 'searchcondition', 'cascader', 'formitemw', 'inputbutton', 'attachupload', 'imageupload', 'radiogroup', 'checkboxgroup', 'inputmap', 'editor', 'attachmgrw', 'autoselect', 'text']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.enumselect, _MyUiDefines.UiTypeDef.inputrefer, _MyUiDefines.UiTypeDef.textarea, _MyUiDefines.UiTypeDef.datepicker, _MyUiDefines.UiTypeDef.timepicker, _MyUiDefines.UiTypeDef.rangepicker, _MyUiDefines.UiTypeDef.input, _MyUiDefines.UiTypeDef.select, _MyUiDefines.UiTypeDef.inputnumber, _MyUiDefines.UiTypeDef.currency, _MyUiDefines.UiTypeDef.referinput, _MyUiDefines.UiTypeDef.switch, _MyUiDefines.UiTypeDef.searchcondition, _MyUiDefines.UiTypeDef.cascader, _MyUiDefines.UiTypeDef.formitemw, _MyUiDefines.UiTypeDef.inputbutton, _MyUiDefines.UiTypeDef.attachupload, _MyUiDefines.UiTypeDef.imageupload, _MyUiDefines.UiTypeDef.radiogroup, _MyUiDefines.UiTypeDef.checkboxgroup, _MyUiDefines.UiTypeDef.inputmap, _MyUiDefines.UiTypeDef.editor, _MyUiDefines.UiTypeDef.attachmgrw, _MyUiDefines.UiTypeDef.autoselect, _MyUiDefines.UiTypeDef.text];
                     break;
                 case _MyUiDefines.UiTypeDef.breadcrumb:
                     uiSubSet = [_MyUiDefines.UiTypeDef.breadcrumbitem];
@@ -3522,7 +3324,7 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
                     uiSubSet = [_MyUiDefines.UiTypeDef.tablecol];
                     break;
                 case _MyUiDefines.UiTypeDef.splitpane:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['formw', 'accordions', 'tabs', 'row', 'panel', 'area', 'scrollbar', 'toolbar', 'splitpane', 'table', 'tablew', 'edittablew', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'tree']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.formw, _MyUiDefines.UiTypeDef.accordions, _MyUiDefines.UiTypeDef.tabs, _MyUiDefines.UiTypeDef.row, _MyUiDefines.UiTypeDef.panel, _MyUiDefines.UiTypeDef.area, _MyUiDefines.UiTypeDef.scrollbar, _MyUiDefines.UiTypeDef.toolbar, _MyUiDefines.UiTypeDef.splitpane, _MyUiDefines.UiTypeDef.table, _MyUiDefines.UiTypeDef.tablew, _MyUiDefines.UiTypeDef.edittablew, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.buttonselect, _MyUiDefines.UiTypeDef.breadcrumb, _MyUiDefines.UiTypeDef.tree];
                     break;
                 case _MyUiDefines.UiTypeDef.radio:
                     uiSubSet = [_MyUiDefines.UiTypeDef.radiogroup];
@@ -3538,19 +3340,19 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
                     break;
                 //----------建造模板------------
                 case _MyUiDefines.UiTypeDef.CPListPage:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'breadcrumb', 'steps', 'row', 'splitpane', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'filterarea', 'chartw', 'CPListHeader', 'CPListToolbar', 'CPListTable', 'CPPluginMgr', 'CPFilterBar']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.table, _MyUiDefines.UiTypeDef.tablew, _MyUiDefines.UiTypeDef.edittablew, _MyUiDefines.UiTypeDef.accordions, _MyUiDefines.UiTypeDef.tabs, _MyUiDefines.UiTypeDef.breadcrumb, _MyUiDefines.UiTypeDef.steps, _MyUiDefines.UiTypeDef.row, _MyUiDefines.UiTypeDef.splitpane, _MyUiDefines.UiTypeDef.panel, _MyUiDefines.UiTypeDef.area, _MyUiDefines.UiTypeDef.scrollbar, _MyUiDefines.UiTypeDef.toolbar, _MyUiDefines.UiTypeDef.modal, _MyUiDefines.UiTypeDef.filterarea, _MyUiDefines.UiTypeDef.chartw, _MyUiDefines.UiTypeDef.CPListHeader, _MyUiDefines.UiTypeDef.CPListToolbar, _MyUiDefines.UiTypeDef.CPListTable, _MyUiDefines.UiTypeDef.CPPluginMgr, _MyUiDefines.UiTypeDef.CPFilterBar];
                     break;
                 case _MyUiDefines.UiTypeDef.CPListHeader:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'CPGoBack', 'CPSearchBar', 'searchscheme', 'CPIconButton']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.buttonselect, _MyUiDefines.UiTypeDef.breadcrumb, _MyUiDefines.UiTypeDef.CPGoBack, _MyUiDefines.UiTypeDef.CPSearchBar, _MyUiDefines.UiTypeDef.searchscheme, _MyUiDefines.UiTypeDef.CPIconButton];
                     break;
                 case _MyUiDefines.UiTypeDef.CPListToolbar:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency', 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer', 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.divide, _MyUiDefines.UiTypeDef.row, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonselect, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.input, _MyUiDefines.UiTypeDef.caption, _MyUiDefines.UiTypeDef.inputbutton, _MyUiDefines.UiTypeDef.datepicker, _MyUiDefines.UiTypeDef.inputnumber, _MyUiDefines.UiTypeDef.currency, _MyUiDefines.UiTypeDef.switch, _MyUiDefines.UiTypeDef.referinput, _MyUiDefines.UiTypeDef.radiogroup, _MyUiDefines.UiTypeDef.checkboxgroup, _MyUiDefines.UiTypeDef.inputrefer, _MyUiDefines.UiTypeDef.bpmsubmitw, _MyUiDefines.UiTypeDef.bpmapprovew, _MyUiDefines.UiTypeDef.printbutton, _MyUiDefines.UiTypeDef.searchcondition, _MyUiDefines.UiTypeDef.attachmgrw];
                     break;
                 case _MyUiDefines.UiTypeDef.CPCardPage:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.table, _MyUiDefines.UiTypeDef.tablew, _MyUiDefines.UiTypeDef.edittablew, _MyUiDefines.UiTypeDef.accordions, _MyUiDefines.UiTypeDef.tabs, _MyUiDefines.UiTypeDef.row, _MyUiDefines.UiTypeDef.splitpane, _MyUiDefines.UiTypeDef.breadcrumb, _MyUiDefines.UiTypeDef.steps, _MyUiDefines.UiTypeDef.panel, _MyUiDefines.UiTypeDef.area, _MyUiDefines.UiTypeDef.scrollbar, _MyUiDefines.UiTypeDef.toolbar, _MyUiDefines.UiTypeDef.modal, _MyUiDefines.UiTypeDef.stepsnav, _MyUiDefines.UiTypeDef.CPCardHeader, _MyUiDefines.UiTypeDef.CPCardTitle, _MyUiDefines.UiTypeDef.CPCardBody, _MyUiDefines.UiTypeDef.CPPluginMgr];
                     break;
                 case _MyUiDefines.UiTypeDef.CPCardHeader:
-                    uiSubSet = _UiSubUtils2.default.include(_MyUiDefines.UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
+                    uiSubSet = [_MyUiDefines.UiTypeDef.plugin, _MyUiDefines.UiTypeDef.button, _MyUiDefines.UiTypeDef.buttonrefer, _MyUiDefines.UiTypeDef.buttonselect, _MyUiDefines.UiTypeDef.CPGoBack, _MyUiDefines.UiTypeDef.CPIconButton, _MyUiDefines.UiTypeDef.CPDropdownButton, _MyUiDefines.UiTypeDef.CPBpmApprove, _MyUiDefines.UiTypeDef.CPBpmSubmit, _MyUiDefines.UiTypeDef.CPAttachMgr, _MyUiDefines.UiTypeDef.CPPrintButton];
                     break;
                 case _MyUiDefines.UiTypeDef.radiogroup:
                 case _MyUiDefines.UiTypeDef.checkbox:
@@ -3583,9 +3385,11 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
                 case _MyUiDefines.UiTypeDef.inputnumber:
                 case _MyUiDefines.UiTypeDef.inputrefer:
                 case _MyUiDefines.UiTypeDef.switch:
+                case _MyUiDefines.UiTypeDef.plugin:
                     uiSubSet = [];
                     break;
             }
+            return uiSubSet;
         }
     }, {
         key: 'onPageTypes',
@@ -3622,6 +3426,97 @@ var MyGlobalAdapter = function (_GlobalAdapter) {
 }(_indexDeps.GlobalAdapter);
 
 exports.default = MyGlobalAdapter;
+
+/***/ }),
+
+/***/ "./src/MyPluginAdapter.js":
+/*!********************************!*\
+  !*** ./src/MyPluginAdapter.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _indexDeps = __webpack_require__(/*! ./index-deps */ "./src/index-deps.js");
+
+var _MyPropMeta = __webpack_require__(/*! ./MyPropMeta */ "./src/MyPropMeta.js");
+
+var _MyPropMeta2 = _interopRequireDefault(_MyPropMeta);
+
+var _MyPropDataToValue = __webpack_require__(/*! ./MyPropDataToValue */ "./src/MyPropDataToValue.js");
+
+var _MyPropDataToValue2 = _interopRequireDefault(_MyPropDataToValue);
+
+var _MyPropValueToData = __webpack_require__(/*! ./MyPropValueToData */ "./src/MyPropValueToData.js");
+
+var _MyPropValueToData2 = _interopRequireDefault(_MyPropValueToData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * 插件转换适配器
+ */
+var MyPluginAdapter = function (_PropAdapter) {
+    _inherits(MyPluginAdapter, _PropAdapter);
+
+    function MyPluginAdapter() {
+        _classCallCheck(this, MyPluginAdapter);
+
+        return _possibleConstructorReturn(this, (MyPluginAdapter.__proto__ || Object.getPrototypeOf(MyPluginAdapter)).apply(this, arguments));
+    }
+
+    _createClass(MyPluginAdapter, [{
+        key: 'onPageMetas',
+
+        //--------------生命周期方法--------------------
+        //配置页面的元数据
+        value: function onPageMetas(options) {
+            var baseMetas = (0, _MyPropMeta2.default)(options);
+            baseMetas.unshift({
+                name: 'uitype',
+                label: '解析器',
+                type: _indexDeps.MetaType.Text,
+                props: {},
+                defaultValue: 'UnKnowWidget'
+            });
+            return baseMetas;
+        }
+
+        //数据转换为值的适配
+
+    }, {
+        key: 'onDataToValue',
+        value: function onDataToValue(options) {
+            return (0, _MyPropDataToValue2.default)(options);
+        }
+
+        //值转换为数据的适配
+
+    }, {
+        key: 'onValueToData',
+        value: function onValueToData(options) {
+            (0, _MyPropValueToData2.default)(options);
+        }
+    }]);
+
+    return MyPluginAdapter;
+}(_indexDeps.PropAdapter);
+
+exports.default = MyPluginAdapter;
 
 /***/ }),
 
@@ -3698,7 +3593,7 @@ var MyPropAdapter = function (_PropAdapter) {
     }, {
         key: 'onValueToData',
         value: function onValueToData(options) {
-            (0, _MyPropValueToData2.default)(options);
+            (0, _MyPropValueToData2.default)(Object.assign({ keepDefaultValue: false }, options));
         }
     }]);
 
@@ -3850,7 +3745,6 @@ function strTrim(x) {
         return x;
     }
 }
-//已过期
 /**
  * 如果存在有效值，则设置属性值，否则清除属性
  */
@@ -3933,6 +3827,11 @@ var UiTitleDef = {}; //定义uititle值,uititle标识元素名称
 var UiDefaultDef = {}; //定义uidefault值,uidefault预置元素默认属性值
 var UiIconDef = {}; //定义uiicon值,uiicon为元素图标名称
 var UiIsViewDef = {};
+
+UiTypeDef.plugin = 'UnKnowWidget';
+UiTitleDef.plugin = '自定义组件';
+UiDefaultDef.plugin = { uiplugin: true };
+
 UiTypeDef.page = 'YYPage';
 UiTitleDef.page = '页面';
 
@@ -3944,11 +3843,11 @@ UiTitleDef.caption = '标题文本';
 
 UiTypeDef.toolbar = 'YYToolbar';
 UiTitleDef.toolbar = '工具栏';
-UiIconDef.toolbar = 'icon-gongjulan';
+//UiIconDef.toolbar = 'icon-gongjulan';
 
 UiTypeDef.button = 'YYButton';
 UiTitleDef.button = '按钮';
-UiIconDef.button = 'icon-anniu';
+//UiIconDef.button = 'icon-anniu';
 
 UiTypeDef.buttonselect = 'YYButtonSelect';
 UiTitleDef.buttonselect = '下拉按钮';
@@ -3957,23 +3856,23 @@ UiTitleDef.buttonitem = '下拉按钮项';
 
 UiTypeDef.table = 'YYTable';
 UiTitleDef.table = '基础表格';
-UiIconDef.table = 'icon-biaoge';
+//UiIconDef.table = 'icon-biaoge';
 UiTypeDef.tablecol = 'YYTableCol';
 UiTitleDef.tablecol = '表格列';
 
 UiTypeDef.tablew = 'TableWidget';
 UiTitleDef.tablew = '数据表格';
-UiIconDef.tablew = 'icon-biaoge';
+//UiIconDef.tablew = 'icon-biaoge';
 
 UiTypeDef.edittablew = 'EditTableWidget';
 UiTitleDef.edittablew = '编辑表格';
-UiIconDef.edittablew = 'icon-biaoge';
+//UiIconDef.edittablew = 'icon-biaoge';
 UiTypeDef.edititemw = 'EditItemWidget';
 UiTitleDef.edititemw = '编辑表格列';
 
 UiTypeDef.breadcrumb = 'YYBreadcrumb';
 UiTitleDef.breadcrumb = '面包屑';
-UiIconDef.breadcrumb = 'icon-mianbaoxie';
+//UiIconDef.breadcrumb = 'icon-mianbaoxie';
 
 UiTypeDef.breadcrumbitem = 'YYBreadcrumbItem';
 UiTitleDef.breadcrumbitem = '面包屑元素';
@@ -3983,30 +3882,30 @@ UiTitleDef.iframe = '内嵌页面';
 //布局
 UiTypeDef.accordions = 'YYAccordions';
 UiTitleDef.accordions = '折叠卡片';
-UiIconDef.accordions = 'icon-shoufengqin';
+//UiIconDef.accordions = 'icon-shoufengqin';
 UiTypeDef.accordion = 'YYAccordion';
 UiTitleDef.accordion = '子卡片';
 
 UiTypeDef.tabs = 'YYTabs';
 UiTitleDef.tabs = '多页签';
-UiIconDef.tabs = 'icon-biaoqianye';
+//UiIconDef.tabs = 'icon-biaoqianye';
 UiTypeDef.tab = 'YYTab';
 UiTitleDef.tab = '子标签';
 UiTypeDef.row = 'YYRow';
 UiTitleDef.row = '24格布局';
-UiIconDef.row = 'icon-zhagebuju';
+//UiIconDef.row = 'icon-zhagebuju';
 UiTypeDef.col = 'YYCol';
 UiTitleDef.col = '格子';
 UiTypeDef.panel = 'YYPanel';
 UiTitleDef.panel = '面板';
-UiIconDef.panel = 'icon-danmianban';
+//UiIconDef.panel = 'icon-danmianban';
 UiTypeDef.scrollbar = 'YYScrollbar';
 UiTitleDef.scrollbar = '滚动区域';
-UiIconDef.scrollbar = 'icon-rongqizujian';
+//UiIconDef.scrollbar = 'icon-rongqizujian';
 UiDefaultDef.scrollbar = { width: 300, height: 300 };
 UiTypeDef.tree = 'YYTree';
 UiTitleDef.tree = '层次树';
-UiIconDef.tree = 'icon-shujiegou';
+//UiIconDef.tree = 'icon-shujiegou';
 UiTypeDef.treenode = 'YYTreeNode';
 UiTitleDef.treenode = '树节点';
 UiTypeDef.divide = 'YYDivide';
@@ -4016,7 +3915,7 @@ UiTitleDef.modal = '弹窗层';
 /**-------表单相关-----begin**/
 UiTypeDef.formw = 'FormWidget';
 UiTitleDef.formw = '表单';
-UiIconDef.formw = 'icon-biaodan';
+//UiIconDef.formw = 'icon-biaodan';
 UiDefaultDef.formw = { colnumber: 2 };
 
 UiTypeDef.formitemw = 'FormItemWidget';
@@ -4024,54 +3923,54 @@ UiTitleDef.formitemw = '表单项';
 
 UiTypeDef.input = 'YYInput';
 UiTitleDef.input = '文本框';
-UiIconDef.input = 'icon-shurukuang';
+//UiIconDef.input = 'icon-shurukuang';
 
 UiTypeDef.inputhidden = UiTypeDef.formitemw;
 UiTitleDef.inputhidden = '隐藏框';
 
 UiTypeDef.textarea = 'YYTextarea';
 UiTitleDef.textarea = '多行文本域';
-UiIconDef.textarea = 'icon-wenbenyu';
+//UiIconDef.textarea = 'icon-wenbenyu';
 
 UiTypeDef.text = 'YYText';
 UiTitleDef.text = '纯文本';
-UiIconDef.text = 'icon-chunwenben';
+//UiIconDef.text = 'icon-chunwenben';
 
 UiTypeDef.datepicker = 'YYDatePicker';
 UiTitleDef.datepicker = '日期框';
-UiIconDef.datepicker = 'icon-riqixuanzekuang';
+//UiIconDef.datepicker = 'icon-riqixuanzekuang';
 
 UiTypeDef.timepicker = 'YYTimePicker';
 UiTitleDef.timepicker = '时间框';
-UiIconDef.timepicker = 'icon-shijianxuanzekuang';
+//UiIconDef.timepicker = 'icon-shijianxuanzekuang';
 
 UiTypeDef.rangepicker = 'YYRangePicker';
 UiTitleDef.rangepicker = '日期范围框';
-UiIconDef.rangepicker = 'icon-riqixuanzekuang';
+//UiIconDef.rangepicker = 'icon-riqixuanzekuang';
 
 UiTypeDef.inputnumber = 'YYInputNumber';
 UiTitleDef.inputnumber = '整数框';
-UiIconDef.inputnumber = 'icon-shuzishurukuang';
+//UiIconDef.inputnumber = 'icon-shuzishurukuang';
 
 UiTypeDef.currency = 'YYInputNumber';
 UiTitleDef.currency = '精确数值框';
-UiIconDef.currency = 'icon-shuzishurukuang';
+//UiIconDef.currency = 'icon-shuzishurukuang';
 UiDefaultDef.currency = { type: 'currency' };
 
 UiTypeDef.inputrefer = 'YYReferInput';
 UiTitleDef.inputrefer = '参照框';
-UiIconDef.inputrefer = 'icon-canzhao';
+//UiIconDef.inputrefer = 'icon-canzhao';
 
 UiTypeDef.buttonrefer = 'YYReferButton';
 UiTitleDef.buttonrefer = '按钮参照';
-UiIconDef.buttonrefer = 'icon-canzhao';
+//UiIconDef.buttonrefer = 'icon-canzhao';
 
 UiTypeDef.switch = 'YYSwitch';
 UiTitleDef.switch = '开关';
-UiIconDef.switch = 'icon-kaiguan';
+//UiIconDef.switch = 'icon-kaiguan';
 UiTypeDef.select = 'YYSelect';
 UiTitleDef.select = '下拉选择';
-UiIconDef.select = 'icon-xialaxuanze';
+//UiIconDef.select = 'icon-xialaxuanze';
 UiTypeDef.option = 'YYOption';
 UiTitleDef.option = '下拉选项';
 UiTypeDef.autoselect = 'YYAutoSelect';
@@ -4117,13 +4016,13 @@ UiTitleDef.splitpane = '2格布局';
 //特殊
 UiTypeDef.searchcondition = 'YYSearchCondition';
 UiTitleDef.searchcondition = '搜索框';
-UiIconDef.searchcondition = '';
+//UiIconDef.searchcondition = '';
 UiTypeDef.searchitem = 'YYSearchItem';
 UiTitleDef.searchitem = '搜索项';
-UiIconDef.searchitem = '';
+//UiIconDef.searchitem = '';
 UiTypeDef.searchscheme = 'YYSchemeGroup';
 UiTitleDef.searchscheme = '方案栏';
-UiIconDef.searchscheme = '';
+//UiIconDef.searchscheme = '';
 
 UiTypeDef.stepsnav = 'YYStepsNav';
 UiTitleDef.stepsnav = '步骤条导航';
@@ -4160,7 +4059,7 @@ UiTitleDef.chartw = 'ECharts图表';
 /**----模板-建造私有云----begin**/
 UiTypeDef.CPListPage = 'CPListPage';
 UiTitleDef.CPListPage = '单据列表';
-UiIconDef.CPListPage = 'icon-wenbenyu';
+//UiIconDef.CPListPage = 'icon-wenbenyu';
 
 UiTypeDef.CPListHeader = 'CPListHeader';
 UiTitleDef.CPListHeader = '列表头部栏';
@@ -4173,7 +4072,7 @@ UiTitleDef.CPListTable = '列表数据表格';
 
 UiTypeDef.CPCardPage = 'CPCardPage';
 UiTitleDef.CPCardPage = '单据表单';
-UiIconDef.CPCardPage = 'icon-wenbenyu';
+//UiIconDef.CPCardPage = 'icon-wenbenyu';
 
 UiTypeDef.CPCardHeader = 'CPCardHeader';
 UiTitleDef.CPCardHeader = '卡片头部栏';
@@ -4206,13 +4105,13 @@ UiTypeDef.CPPluginMgr = 'CPPluginMgr';
 UiTitleDef.CPPluginMgr = '插件管理';
 UiTypeDef.CPFilterBar = 'CPFilterBar';
 UiTitleDef.CPFilterBar = '筛选条件栏';
-UiIconDef.CPFilterBar = '';
+//UiIconDef.CPFilterBar = '';
 UiTypeDef.CPFilterRow = 'CPFilterRow ';
 UiTitleDef.CPFilterRow = '筛选条件';
-UiIconDef.CPFilterRow = '';
+//UiIconDef.CPFilterRow = '';
 UiTypeDef.CPFRField = 'CPFRField';
 UiTitleDef.CPFRField = '条件元素';
-UiIconDef.CPFRField = '';
+//UiIconDef.CPFRField = '';
 /**----模板-建造私有云---end**/
 
 /**----模板-建造公有云----begin**/
@@ -6138,7 +6037,7 @@ var PageAdapter = function (_MyPropAdapter) {
         //配置页面的元数据
         value: function onPageMetas(options) {
             var baseMetas = _get(PageAdapter.prototype.__proto__ || Object.getPrototypeOf(PageAdapter.prototype), 'onPageMetas', this).call(this, options);
-            return (baseMetas || []).concat((0, _PageMeta2.default)(options));
+            return baseMetas.concat((0, _PageMeta2.default)(options));
         }
         // //配置页面的属性
         // onPageProps(options){
@@ -11273,6 +11172,10 @@ var _MyGlobalAdapter = __webpack_require__(/*! ./MyGlobalAdapter */ "./src/MyGlo
 
 var _MyGlobalAdapter2 = _interopRequireDefault(_MyGlobalAdapter);
 
+var _MyPluginAdapter = __webpack_require__(/*! ./MyPluginAdapter */ "./src/MyPluginAdapter.js");
+
+var _MyPluginAdapter2 = _interopRequireDefault(_MyPluginAdapter);
+
 var _AccordionsAdapter = __webpack_require__(/*! ./adapters/AccordionsAdapter */ "./src/adapters/AccordionsAdapter.js");
 
 var _AccordionsAdapter2 = _interopRequireDefault(_AccordionsAdapter);
@@ -11601,6 +11504,8 @@ var myLibrary = new _indexDeps.UiLibrary('yylib-react');
 myLibrary.setUiDefines(_MyUiDefines.UiObjects);
 
 myLibrary.setGlobalAdapter(_MyGlobalAdapter2.default);
+
+myLibrary.addPropAdapter(_MyUiDefines.UiTypeDef.plugin, _MyPluginAdapter2.default);
 
 //----------------属性适配--------------------
 myLibrary.addPropAdapter(_MyUiDefines.UiTypeDef.accordion, _AccordionAdapter2.default);
@@ -21871,7 +21776,7 @@ module.exports = function (options) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+
 
 var _indexDeps = __webpack_require__(/*! ../../index-deps */ "./src/index-deps.js");
 
@@ -21883,16 +21788,19 @@ module.exports = function (options) {
         tplTree = options.tplTree;
 
     var PropMeta = [];
-    if (!process.env.YYLIB_ENV) {
-        //开发态
-        PropMeta.push({
-            name: 'logicFormula',
-            label: '逻辑公式',
-            type: _indexDeps.MetaType.LogicFormula,
-            props: {},
-            defaultValue: null
-        });
-    }
+    // if(!process.env.YYLIB_ENV) {//开发态
+    //     PropMeta.push(
+    //         {
+    //             name: 'logicFormula',
+    //             label: '逻辑公式',
+    //             type: MetaType.LogicFormula,//对Blockly有依赖暂去除
+    //             props: {
+    //
+    //             },
+    //             defaultValue: null
+    //         }
+    //     )
+    // }
     PropMeta = PropMeta.concat([{
         name: 'system',
         label: '系统对象',
@@ -21934,7 +21842,6 @@ module.exports = function (options) {
     }
     return PropMeta;
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
