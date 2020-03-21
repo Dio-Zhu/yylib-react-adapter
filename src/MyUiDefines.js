@@ -12,6 +12,7 @@ var UiIsViewDef={};
 UiTypeDef.plugin = 'UnKnowWidget';
 UiTitleDef.plugin = '自定义组件';
 UiDefaultDef.plugin = {uiplugin:true};
+// UiIconDef.plugin = 'icon-jichuzujian';
 
 UiTypeDef.page = 'YYPage';
 UiTitleDef.page = '页面';
