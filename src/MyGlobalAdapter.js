@@ -124,6 +124,7 @@ export default class MyGlobalAdapter extends GlobalAdapter{
                 uititle:"平台-特殊",
                 uiicon: 'tag',
                 children: [
+                    UiTypeDef.plugin,
                     UiTypeDef.chartw,
                     UiTypeDef.filterarea,
                     UiTypeDef.steps,
@@ -206,9 +207,11 @@ export default class MyGlobalAdapter extends GlobalAdapter{
                 , 'CPAuditInfo', 'CPPrintButton', 'CPPluginMgr'].concat(uniqueParentItems));
                 break;
             case UiTypeDef.toolbar:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency'
-                    , 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer'
-                    , 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.divide, UiTypeDef.row, UiTypeDef.button, UiTypeDef.buttonselect, UiTypeDef.buttonrefer
+                    , UiTypeDef.input, UiTypeDef.caption, UiTypeDef.inputbutton, UiTypeDef.datepicker, UiTypeDef.inputnumber, UiTypeDef.currency
+                    , UiTypeDef.switch, UiTypeDef.referinput, UiTypeDef.radiogroup, UiTypeDef.checkboxgroup, UiTypeDef.inputrefer
+                    , UiTypeDef.bpmsubmitw, UiTypeDef.bpmapprovew, UiTypeDef.printbutton, UiTypeDef.searchcondition, UiTypeDef.attachmgrw];
                 break;
             case UiTypeDef.area:
                 uiSubSet = UiSubUtils.exclude(UiTypeDef, ['CPListHeader', 'CPListToolbar', 'CPListTable', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPIconButton', 'CPDropdownButton', 'CPGoBack', 'CPSearchBar'
@@ -239,9 +242,13 @@ export default class MyGlobalAdapter extends GlobalAdapter{
                 uiSubSet = UiSubUtils.exclude(UiTypeDef, uniqueParentItems);
                 break;
             case UiTypeDef.formw:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'enumselect', 'inputrefer', 'textarea', 'datepicker', 'timepicker', 'rangepicker', 'input', 'select',
-                    'inputnumber', 'currency', 'referinput', 'switch', 'searchcondition', 'cascader', 'formitemw', 'inputbutton',
-                    'attachupload', 'imageupload', 'radiogroup', 'checkboxgroup', 'inputmap', 'editor', 'attachmgrw', 'autoselect', 'text']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.button, UiTypeDef.buttonrefer, UiTypeDef.enumselect, UiTypeDef.inputrefer,
+                    UiTypeDef.textarea, UiTypeDef.datepicker, UiTypeDef.timepicker, UiTypeDef.rangepicker, UiTypeDef.input, UiTypeDef.select,
+                    UiTypeDef.inputnumber, UiTypeDef.currency, UiTypeDef.referinput, UiTypeDef.switch, UiTypeDef.searchcondition, UiTypeDef.cascader,
+                    UiTypeDef.formitemw, UiTypeDef.inputbutton,UiTypeDef.attachupload, UiTypeDef.imageupload, UiTypeDef.radiogroup, UiTypeDef.checkboxgroup,
+                    UiTypeDef.inputmap, UiTypeDef.editor, UiTypeDef.attachmgrw, UiTypeDef.autoselect, UiTypeDef.text
+                ];
                 break;
             case UiTypeDef.breadcrumb:
                 uiSubSet = [UiTypeDef.breadcrumbitem];
@@ -277,7 +284,11 @@ export default class MyGlobalAdapter extends GlobalAdapter{
                 uiSubSet = [UiTypeDef.tablecol];
                 break;
             case UiTypeDef.splitpane:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['formw', 'accordions', 'tabs', 'row', 'panel', 'area', 'scrollbar', 'toolbar', 'splitpane', 'table', 'tablew', 'edittablew', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'tree']);
+                uiSubSet = [
+                    UiTypeDef.formw, UiTypeDef.accordions, UiTypeDef.tabs, UiTypeDef.row, UiTypeDef.panel, UiTypeDef.area, UiTypeDef.scrollbar,
+                    UiTypeDef.toolbar, UiTypeDef.splitpane, UiTypeDef.table, UiTypeDef.tablew, UiTypeDef.edittablew,
+                    UiTypeDef.button, UiTypeDef.buttonrefer, UiTypeDef.buttonselect, UiTypeDef.breadcrumb, UiTypeDef.tree
+                ];
                 break;
             case UiTypeDef.radio:
                 uiSubSet = [UiTypeDef.radiogroup];
@@ -293,21 +304,39 @@ export default class MyGlobalAdapter extends GlobalAdapter{
                 break;
                 //----------建造模板------------
             case UiTypeDef.CPListPage:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'breadcrumb', 'steps', 'row', 'splitpane', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'filterarea', 'chartw', 'CPListHeader', 'CPListToolbar', 'CPListTable', 'CPPluginMgr', 'CPFilterBar']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.table, UiTypeDef.tablew, UiTypeDef.edittablew, UiTypeDef.accordions,
+                    UiTypeDef.tabs, UiTypeDef.breadcrumb, UiTypeDef.steps, UiTypeDef.row, UiTypeDef.splitpane, UiTypeDef.panel,
+                    UiTypeDef.area, UiTypeDef.scrollbar, UiTypeDef.toolbar, UiTypeDef.modal, UiTypeDef.filterarea, UiTypeDef.chartw,
+                    UiTypeDef.CPListHeader, UiTypeDef.CPListToolbar, UiTypeDef.CPListTable, UiTypeDef.CPPluginMgr, UiTypeDef.CPFilterBar
+                ];
                 break;
             case UiTypeDef.CPListHeader:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'breadcrumb', 'CPGoBack', 'CPSearchBar', 'searchscheme', 'CPIconButton']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.button, UiTypeDef.buttonrefer, UiTypeDef.buttonselect,
+                    UiTypeDef.breadcrumb, UiTypeDef.CPGoBack, UiTypeDef.CPSearchBar,
+                    UiTypeDef.searchscheme, UiTypeDef.CPIconButton
+                ];
                 break;
             case UiTypeDef.CPListToolbar:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'divide', 'row', 'button', 'buttonselect', 'buttonrefer', 'input', 'caption', 'inputbutton', 'datepicker', 'inputnumber', 'currency'
-                    , 'switch', 'referinput', 'radiogroup', 'checkboxgroup', 'inputrefer'
-                    , 'bpmsubmitw', 'bpmapprovew', 'printbutton', 'searchcondition', 'attachmgrw']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.divide, UiTypeDef.row, UiTypeDef.button, UiTypeDef.buttonselect,
+                    UiTypeDef.buttonrefer, UiTypeDef.input, UiTypeDef.caption, UiTypeDef.inputbutton, UiTypeDef.datepicker,
+                    UiTypeDef.inputnumber, UiTypeDef.currency, UiTypeDef.switch, UiTypeDef.referinput, UiTypeDef.radiogroup,
+                    UiTypeDef.checkboxgroup, UiTypeDef.inputrefer, UiTypeDef.bpmsubmitw, UiTypeDef.bpmapprovew,
+                    UiTypeDef.printbutton, UiTypeDef.searchcondition, UiTypeDef.attachmgrw
+                ];
                 break;
             case UiTypeDef.CPCardPage:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'table', 'tablew', 'edittablew', 'accordions', 'tabs', 'row', 'splitpane', 'breadcrumb', 'steps', 'panel', 'area', 'scrollbar', 'toolbar', 'modal', 'stepsnav', 'CPCardHeader', 'CPCardTitle', 'CPCardBody', 'CPPluginMgr']);
+                uiSubSet = [
+                    UiTypeDef.plugin, UiTypeDef.table, UiTypeDef.tablew, UiTypeDef.edittablew, UiTypeDef.accordions,
+                    UiTypeDef.tabs, UiTypeDef.row, UiTypeDef.splitpane, UiTypeDef.breadcrumb, UiTypeDef.steps,
+                    UiTypeDef.panel, UiTypeDef.area, UiTypeDef.scrollbar, UiTypeDef.toolbar, UiTypeDef.modal, UiTypeDef.stepsnav,
+                    UiTypeDef.CPCardHeader, UiTypeDef.CPCardTitle, UiTypeDef.CPCardBody, UiTypeDef.CPPluginMgr
+                ];
                 break;
             case UiTypeDef.CPCardHeader:
-                uiSubSet = UiSubUtils.include(UiTypeDef, ['plugin', 'button', 'buttonrefer', 'buttonselect', 'CPGoBack', 'CPIconButton', 'CPDropdownButton', 'CPBpmApprove', 'CPBpmSubmit', 'CPAttachMgr', 'CPPrintButton']);
+                uiSubSet = [UiTypeDef.plugin, UiTypeDef.button, UiTypeDef.buttonrefer, UiTypeDef.buttonselect, UiTypeDef.CPGoBack, UiTypeDef.CPIconButton, UiTypeDef.CPDropdownButton, UiTypeDef.CPBpmApprove, UiTypeDef.CPBpmSubmit, UiTypeDef.CPAttachMgr, UiTypeDef.CPPrintButton];
                 break;
             case UiTypeDef.radiogroup:
             case UiTypeDef.checkbox:
@@ -340,9 +369,11 @@ export default class MyGlobalAdapter extends GlobalAdapter{
             case UiTypeDef.inputnumber:
             case UiTypeDef.inputrefer:
             case UiTypeDef.switch:
+            case UiTypeDef.plugin:
                 uiSubSet = [];
                 break;
         }
+        return uiSubSet;
     }
 
     onPageTypes(options){

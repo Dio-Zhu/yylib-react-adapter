@@ -8,6 +8,11 @@ var UiTitleDef = {};//定义uititle值,uititle标识元素名称
 var UiDefaultDef = {};//定义uidefault值,uidefault预置元素默认属性值
 var UiIconDef = {};//定义uiicon值,uiicon为元素图标名称
 var UiIsViewDef={};
+
+UiTypeDef.plugin = 'UnKnowWidget';
+UiTitleDef.plugin = '自定义组件';
+UiDefaultDef.plugin = {uiplugin:true};
+
 UiTypeDef.page = 'YYPage';
 UiTitleDef.page = '页面';
 

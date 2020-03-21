@@ -1,6 +1,7 @@
 import {UiLibrary, EventAdapter} from './index-deps';
 import {UiTypeDef, UiObjects} from './MyUiDefines';
 import MyGlobalAdapter from './MyGlobalAdapter';
+import MyPluginAdapter from './MyPluginAdapter';
 import AccordionsAdapter from './adapters/AccordionsAdapter';
 import AccordionAdapter from './adapters/AccordionAdapter';
 import AttachMgrwAdapter from './adapters/forminputs/AttachMgrwAdapter';
@@ -91,6 +92,7 @@ myLibrary.setUiDefines(UiObjects);
 
 myLibrary.setGlobalAdapter(MyGlobalAdapter);
 
+myLibrary.addPropAdapter(UiTypeDef.plugin, MyPluginAdapter);
 
 //----------------属性适配--------------------
 myLibrary.addPropAdapter(UiTypeDef.accordion, AccordionAdapter);
