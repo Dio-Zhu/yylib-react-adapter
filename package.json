@@ -38,7 +38,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
-    "ide-sdk-adapter": "^0.2.7"
+    "ide-sdk-adapter": "^0.2.8"
   },
   "repository": {
     "type": "git",
